@@ -11,7 +11,7 @@ public class ShortestPathFinderUtilityUnitTest {
 	public void positiveTest() {
 		GraphToMapStructureBuilder mapBuilder = new GraphToMapStructureBuilderImpl();
 		Map<String, Node> map = mapBuilder.buildMapStructure(
-				"C:\\Users\\lalit goyal\\git\\GraphStructureLearning\\src\\test\\resources\\SampleInputFile");
+				"C:\\Users\\lalit goyal\\git\\GraphStructureAlgorithms\\src\\test\\resources\\SampleInputFile");
 		String expectedResult = "[Reno,Chicago,Miami,]";
 		Assert.assertEquals(expectedResult,
 				ShortestPathFinderUtility.findAllPossiblePathsBetweenTwoNodes(map, "Reno", "Miami").toString());
