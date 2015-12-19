@@ -1,4 +1,4 @@
-package com.graph.undirected;
+package com.lalit.graph.directed;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,6 +16,14 @@ class Stack<T> {
 		}
 	}
 
+	public T peek() {
+		if (top > 0) {
+			return list.get(top - 1);
+		} else {
+			throw null;
+		}
+	}
+
 	public void push(T node) {
 		this.list.add(node);
 		++top;
@@ -27,5 +35,22 @@ class Stack<T> {
 
 	public int size() {
 		return list.size();
+	}
+
+	public String toString() {
+		String listElement = "";
+		for (T t : list) {
+			listElement = listElement + "" + t + ",";
+		}
+		return listElement;
+	}
+
+	protected List<T> list() {
+		return list;
+	}
+
+	public void clearAllElements() {
+		list.clear();
+		top = 0;
 	}
 }

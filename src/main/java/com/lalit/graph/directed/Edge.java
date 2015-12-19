@@ -1,4 +1,4 @@
-package com.graph.undirected;
+package com.lalit.graph.directed;
 
 class Edge {
 	private String connectedNodeName;

@@ -1,4 +1,4 @@
-package com.graph.undirected;
+package com.lalit.graph.directed;
 
 import java.io.BufferedReader;
 import java.io.FileInputStream;
@@ -14,10 +14,10 @@ public class GraphToMapStructureBuilderImpl implements GraphToMapStructureBuilde
 	 * 
 	 * Algorithm should work for the Directed Graph
 	 **/
-	public Map<String, Node<Edge>> buildMapStructure(String filePath) {
+	public Map<String, Node> buildMapStructure(String filePath) {
 		BufferedReader reader = null;
 		FileInputStream fis = null;
-		Map<String, Node<Edge>> graph = new TreeMap<String, Node<Edge>>();
+		Map<String, Node> graph = new TreeMap<String, Node>();
 		try {
 			fis = new FileInputStream(filePath);
 			reader = new BufferedReader(new InputStreamReader(fis));
@@ -30,9 +30,9 @@ public class GraphToMapStructureBuilderImpl implements GraphToMapStructureBuilde
 					continue;
 				} else {
 					String splitter[] = lineData.split(",");
-					Node<Edge> node = null;
+					Node node = null;
 					if (graph.get(splitter[1]) == null) {
-						node = new Node<Edge>();
+						node = new Node();
 						edgeList = node.getEdgeList();
 						Edge e = new Edge(splitter[0]);
 						e.setConnectedNodeName(splitter[2]);
