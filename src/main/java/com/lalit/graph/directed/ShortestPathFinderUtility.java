@@ -10,33 +10,31 @@ import java.util.Map;
  *         Utility to find the Shortest path between Nodes for the Directed
  *         Graph
  * 
- *         Issue : Backtrack and process all connected nodes of the given Node
- *         to find all possible paths
+ *         String[] -> 0th index shows the name of current node
  * 
- *
+ *         ----------> 1st index shows the distance/weight from connected node
  */
 public class ShortestPathFinderUtility {
 
-	public static List<String> findAllPossiblePathsBetweenTwoNodes(Map<String, Node> graphNodesMap, String startingNode,
-			String destinationNode) {
-		Stack<String> depthFirstTraverseStack = new Stack<String>();
-		depthFirstTraverseStack.push(startingNode);
-		Stack<String> buildPathStack = new Stack<String>();
-		List<String> allPossiblePathsBtwTwoNodes = new ArrayList<>();
+	public static List<List<String[]>> findAllPossiblePathsBetweenTwoNodes(Map<String, Node> graphNodesMap,
+			String startingNode, String destinationNode) {
+		Stack<String[]> depthFirstTraverseStack = new Stack<String[]>();
+		depthFirstTraverseStack.push(new String[] { startingNode, "0" });
+		Stack<String[]> buildPathStack = new Stack<String[]>();
+		List<List<String[]>> allPossiblePathsBtwTwoNodes = new ArrayList<>();
 		while (depthFirstTraverseStack.size() > 0) {
-			String currentNode = depthFirstTraverseStack.peek();
-			if (currentNode.equalsIgnoreCase(destinationNode)) {
-				addBuildPathToPossiblePathsList(depthFirstTraverseStack, buildPathStack, allPossiblePathsBtwTwoNodes,
-						currentNode);
+			String[] currentNodeInfo = depthFirstTraverseStack.peek();
+			if (currentNodeInfo[0].equalsIgnoreCase(destinationNode)) {
+				addNewPathToPossiblePathsList(depthFirstTraverseStack, buildPathStack, allPossiblePathsBtwTwoNodes);
 			} else {
-				if (buildPathStack.size() > 0 && currentNode.equalsIgnoreCase(buildPathStack.peek())) {
+				if (buildPathStack.size() > 0 && currentNodeInfo[0].equalsIgnoreCase(buildPathStack.peek()[0])) {
 					depthFirstTraverseStack.pop();
 					buildPathStack.pop();
 				} else {
-					Node node = graphNodesMap.get(currentNode);
-					if (isEgdeExistsForNode(depthFirstTraverseStack, currentNode, node)) {
-						addConnectedNodesToDFTStack(depthFirstTraverseStack, node);
-						buildPathStack.push(currentNode);
+					Node node = graphNodesMap.get(currentNodeInfo[0]);
+					if (isEgdeExistsForCurrentNode(depthFirstTraverseStack, currentNodeInfo[0], node)) {
+						addAllConnectedNodesToDFTStack(depthFirstTraverseStack, node);
+						buildPathStack.push(currentNodeInfo);
 					} else {
 						depthFirstTraverseStack.pop();
 					}
@@ -46,28 +44,30 @@ public class ShortestPathFinderUtility {
 		return allPossiblePathsBtwTwoNodes;
 	}
 
-	private static boolean isEgdeExistsForNode(Stack<String> depthFirstTraverseStack, String currentNode, Node node) {
-		return node != null && !isNodeAlreadyExistsInDFTStack(depthFirstTraverseStack, currentNode)
-				&& node.getEdgeList().size() > 0;
-	}
-
-	private static void addConnectedNodesToDFTStack(Stack<String> depthFirstTraverseStack, Node node) {
-		for (Edge edge : node.getEdgeList()) {
-			depthFirstTraverseStack.push(edge.getConnectedNodeName());
-		}
-	}
-
-	private static void addBuildPathToPossiblePathsList(Stack<String> depthFirstTraverseStack,
-			Stack<String> buildPathStack, List<String> allPossiblePathsBtwTwoNodes, String currentNode) {
+	private static void addNewPathToPossiblePathsList(Stack<String[]> depthFirstTraverseStack,
+			Stack<String[]> buildPathStack, List<List<String[]>> allPossiblePathsBtwTwoNodes) {
 		buildPathStack.push(depthFirstTraverseStack.pop());
-		allPossiblePathsBtwTwoNodes.add(buildPathStack.toString());
+		List<String[]> listDeepCopy = CommonUtility.deepCopyOfList(buildPathStack.list());
+		allPossiblePathsBtwTwoNodes.add(listDeepCopy);
 		buildPathStack.pop();
 	}
 
-	private static boolean isNodeAlreadyExistsInDFTStack(Stack<String> depthFirstTraverseStack, String currentNode) {
+	private static boolean isNodeAlreadyExistInDFTStack(Stack<String[]> depthFirstTraverseStack, String currentNode) {
 		if (depthFirstTraverseStack.size() == 1) {
 			return false;
 		}
-		return CommonUtility.isDuplicateElement(depthFirstTraverseStack.list(), currentNode);
+		return CommonUtility.isDuplicateElementInStringArrayList(depthFirstTraverseStack.list(), currentNode);
+	}
+
+	private static boolean isEgdeExistsForCurrentNode(Stack<String[]> depthFirstTraverseStack, String currentNode,
+			Node node) {
+		return node != null && !isNodeAlreadyExistInDFTStack(depthFirstTraverseStack, currentNode)
+				&& node.getEdgeList().size() > 0;
+	}
+
+	private static void addAllConnectedNodesToDFTStack(Stack<String[]> depthFirstTraverseStack, Node node) {
+		for (Edge edge : node.getEdgeList()) {
+			depthFirstTraverseStack.push(new String[] { edge.getConnectedNodeName(), edge.getEdgeName() });
+		}
 	}
 }
