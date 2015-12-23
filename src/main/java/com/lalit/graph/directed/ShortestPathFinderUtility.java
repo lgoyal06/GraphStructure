@@ -1,6 +1,6 @@
 package com.lalit.graph.directed;
 
-import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -18,16 +18,17 @@ import java.util.Map;
  */
 public class ShortestPathFinderUtility {
 
-	public static List<List<String[]>> findAllPossiblePathsBetweenTwoNodes(Map<String, Node> graphNodesMap,
+	public static Map<String, Integer> findAllPossiblePathsBetweenTwoNodes(Map<String, Node> graphNodesMap,
 			String startingNode, String destinationNode) {
 		Stack<String[]> depthFirstTraverseStack = new Stack<String[]>();
 		depthFirstTraverseStack.push(new String[] { startingNode, "0" });
 		Stack<String[]> buildPathStack = new Stack<String[]>();
-		List<List<String[]>> allPossiblePathsBtwTwoNodes = new ArrayList<>();
+		Map<String, Integer> mapOfAllPossiblePathsBtwTwoNodes = new HashMap<>();
 		while (depthFirstTraverseStack.size() > 0) {
 			String[] currentNodeInfo = depthFirstTraverseStack.peek();
 			if (currentNodeInfo[0].equalsIgnoreCase(destinationNode)) {
-				addNewPathToPossiblePathsList(depthFirstTraverseStack, buildPathStack, allPossiblePathsBtwTwoNodes);
+				addNewPathToPossiblePathsList(depthFirstTraverseStack, buildPathStack,
+						mapOfAllPossiblePathsBtwTwoNodes);
 			} else {
 				if (buildPathStack.size() > 0 && currentNodeInfo[0].equalsIgnoreCase(buildPathStack.peek()[0])) {
 					depthFirstTraverseStack.pop();
@@ -43,14 +44,14 @@ public class ShortestPathFinderUtility {
 				}
 			}
 		}
-		return allPossiblePathsBtwTwoNodes;
+		return mapOfAllPossiblePathsBtwTwoNodes;
 	}
 
 	private static void addNewPathToPossiblePathsList(Stack<String[]> depthFirstTraverseStack,
-			Stack<String[]> buildPathStack, List<List<String[]>> allPossiblePathsBtwTwoNodes) {
+			Stack<String[]> buildPathStack, Map<String, Integer> mapOfAllPossiblePathsBtwTwoNodes) {
 		buildPathStack.push(depthFirstTraverseStack.pop());
 		List<String[]> listDeepCopy = CommonUtility.deepCopyOfList(buildPathStack.list());
-		allPossiblePathsBtwTwoNodes.add(listDeepCopy);
+		pathAlongWithDistance(mapOfAllPossiblePathsBtwTwoNodes, listDeepCopy);
 		buildPathStack.pop();
 	}
 
@@ -73,15 +74,15 @@ public class ShortestPathFinderUtility {
 		}
 	}
 
-	public static void printAllPossiblePathWithDistance(List<List<String[]>> listOfPathsBetweenTwoNodes) {
-		for (List<String[]> list : listOfPathsBetweenTwoNodes) {
-			String pathName = "";
-			int totalDistance = 0;
-			for (String[] stringArray : list) {
-				pathName = pathName + stringArray[0] + "->";
-				totalDistance = totalDistance + Integer.valueOf(stringArray[1]);
-			}
-			System.out.println(pathName + "Distance->" + totalDistance);
+	private static Map<String, Integer> pathAlongWithDistance(Map<String, Integer> mapOfAllPossiblePathsBtwTwoNodes,
+			List<String[]> path) {
+		String pathName = "[";
+		int totalDistance = 0;
+		for (String[] stringArray : path) {
+			pathName = pathName + stringArray[0] + ",";
+			totalDistance = totalDistance + Integer.valueOf(stringArray[1]);
 		}
+		mapOfAllPossiblePathsBtwTwoNodes.put(pathName.substring(0, pathName.lastIndexOf(",")) + "]", totalDistance);
+		return mapOfAllPossiblePathsBtwTwoNodes;
 	}
 }

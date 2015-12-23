@@ -1,6 +1,5 @@
 package com.lalit.graph.directed;
 
-import java.util.List;
 import java.util.Map;
 
 import org.junit.Test;
@@ -16,7 +15,7 @@ public class ShortestPathFinderUtilityUnitTest {
 		Map<String, Node> map = mapBuilder.buildMapStructure(
 				"C:\\Users\\lalit goyal\\git\\GraphStructureAlgorithms\\src\\test\\resources\\SampleInputFile2");
 		int expectedResult = 11;
-		List<List<String[]>> listOfPathsBetweenTwoNodes = ShortestPathFinderUtility
+		Map<String, Integer> listOfPathsBetweenTwoNodes = ShortestPathFinderUtility
 				.findAllPossiblePathsBetweenTwoNodes(map, "S", "T");
 		Assert.assertEquals(expectedResult, listOfPathsBetweenTwoNodes.size());
 	}
