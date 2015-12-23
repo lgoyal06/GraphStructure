@@ -14,10 +14,11 @@ public class ShortestPathFinderUtilityUnitTest {
 	public void positiveTest() {
 		GraphToMapStructureBuilder mapBuilder = new GraphToMapStructureBuilderImpl();
 		Map<String, Node> map = mapBuilder.buildMapStructure(
-				"C:\\Users\\lalit goyal\\git\\GraphStructureAlgorithms\\src\\test\\resources\\SampleInputFile");
-		int expectedResult = 2;
+				"C:\\Users\\lalit goyal\\git\\GraphStructureAlgorithms\\src\\test\\resources\\SampleInputFile2");
+		int expectedResult = 11;
 		List<List<String[]>> listOfPathsBetweenTwoNodes = ShortestPathFinderUtility
-				.findAllPossiblePathsBetweenTwoNodes(map, "Atlanta", "Houston");
+				.findAllPossiblePathsBetweenTwoNodes(map, "S", "T");
 		Assert.assertEquals(expectedResult, listOfPathsBetweenTwoNodes.size());
 	}
+
 }

@@ -12,7 +12,16 @@ public class GraphToMapStructureBuilderImpl implements GraphToMapStructureBuilde
 
 	/**
 	 * 
-	 * Algorithm should work for the Directed Graph
+	 * Algorithm should work for the Directed Graph.
+	 * 
+	 * Algorithm converts
+	 * 
+	 * Input data format [Distance,Node A,Node B]
+	 * 
+	 * Output Format-> Map with <Key name of Node N , Value as List Of All Edges
+	 * Connecting to that Node N>
+	 * 
+	 * TODO : Check for the Time complexity of this algorithm
 	 **/
 	public Map<String, Node> buildMapStructure(String filePath) {
 		BufferedReader reader = null;

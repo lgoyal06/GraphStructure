@@ -10,9 +10,11 @@ import java.util.Map;
  *         Utility to find the Shortest path between Nodes for the Directed
  *         Graph
  * 
- *         String[] -> 0th index shows the name of current node
+ *         String[0] -> Name of the node
  * 
- *         ----------> 1st index shows the distance/weight from connected node
+ *         String[1] -> Distance/Weight from connected node
+ * 
+ *         TODO : Check for the Time complexity of this algorithm
  */
 public class ShortestPathFinderUtility {
 
@@ -68,6 +70,18 @@ public class ShortestPathFinderUtility {
 	private static void addAllConnectedNodesToDFTStack(Stack<String[]> depthFirstTraverseStack, Node node) {
 		for (Edge edge : node.getEdgeList()) {
 			depthFirstTraverseStack.push(new String[] { edge.getConnectedNodeName(), edge.getEdgeName() });
+		}
+	}
+
+	public static void printAllPossiblePathWithDistance(List<List<String[]>> listOfPathsBetweenTwoNodes) {
+		for (List<String[]> list : listOfPathsBetweenTwoNodes) {
+			String pathName = "";
+			int totalDistance = 0;
+			for (String[] stringArray : list) {
+				pathName = pathName + stringArray[0] + "->";
+				totalDistance = totalDistance + Integer.valueOf(stringArray[1]);
+			}
+			System.out.println(pathName + "Distance->" + totalDistance);
 		}
 	}
 }
