@@ -3,20 +3,17 @@ package com.lalit.graph.utility;
 import java.util.Comparator;
 import java.util.Map;
 
-class ValueComparator implements Comparator<String> {
+public final class ValueComparator implements Comparator<String> {
 
-	Map<String, Integer> base;
+	Map<String, Integer> map;
 
 	public ValueComparator(Map<String, Integer> base) {
-		this.base = base;
+		this.map = base;
 	}
 
 	public int compare(String a, String b) {
-
-		if (base.get(a) < base.get(b)) {
+		if (map.get(a) >= map.get(b)) {
 			return 1;
-		} else if (base.get(a) == base.get(b)) {
-			return -1;
 		} else {
 			return -1;
 		}

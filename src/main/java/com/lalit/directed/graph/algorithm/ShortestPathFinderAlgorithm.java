@@ -3,11 +3,14 @@ package com.lalit.directed.graph.algorithm;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
+import java.util.TreeMap;
 
 import com.lalit.graph.elements.Edge;
 import com.lalit.graph.elements.Node;
 import com.lalit.graph.utility.CommonUtility;
 import com.lalit.graph.utility.Stack;
+import com.lalit.graph.utility.ValueComparator;
 
 /**
  * @author lalit goyal
@@ -21,11 +24,22 @@ import com.lalit.graph.utility.Stack;
  * 
  *         TODO : Check for the Time complexity of this algorithm
  * 
- *         TODO : Apply the sorting of the map based upon values
  */
 public class ShortestPathFinderAlgorithm {
 
-	public static Map<String, Integer> findAllPossiblePathsBetweenTwoNodes(Map<String, Node> graphNodesMap,
+	public static Map<String, Integer> findShortestPathAndDistanceBtwTwoNodesInDirectedGraph(Map<String, Node> graphMap,
+			String startingNode, String destinationNode) {
+		Map<String, Integer> sortedMapOfAllPossiblePathsBtwTwoNodes = findAllPossiblePathsBetweenTwoNodes(graphMap,
+				startingNode, destinationNode);
+		Map<String, Integer> finalMapWithShortestPath = new HashMap<>();
+		for (Entry<String, Integer> entry : sortedMapOfAllPossiblePathsBtwTwoNodes.entrySet()) {
+			finalMapWithShortestPath.put(entry.getKey(), entry.getValue());
+			return finalMapWithShortestPath;
+		}
+		return null;
+	}
+
+	public static Map<String, Integer> findAllPossiblePathsBetweenTwoNodes(Map<String, Node> graphMap,
 			String startingNode, String destinationNode) {
 		Stack<String[]> depthFirstTraverseStack = new Stack<String[]>();
 		depthFirstTraverseStack.push(new String[] { startingNode, "0" });
@@ -33,25 +47,31 @@ public class ShortestPathFinderAlgorithm {
 		Map<String, Integer> mapOfAllPossiblePathsBtwTwoNodes = new HashMap<>();
 		while (depthFirstTraverseStack.size() > 0) {
 			String[] currentNodeInfo = depthFirstTraverseStack.peek();
-			if (currentNodeInfo[0].equalsIgnoreCase(destinationNode)) {
+			if (currentNodeInfo[0].equalsIgnoreCase(destinationNode))
 				addNewPathToPossiblePathsList(depthFirstTraverseStack, buildPathStack,
 						mapOfAllPossiblePathsBtwTwoNodes);
-			} else {
+			else {
 				if (buildPathStack.size() > 0 && currentNodeInfo[0].equalsIgnoreCase(buildPathStack.peek()[0])) {
 					depthFirstTraverseStack.pop();
 					buildPathStack.pop();
 				} else {
-					Node node = graphNodesMap.get(currentNodeInfo[0]);
+					Node node = graphMap.get(currentNodeInfo[0]);
 					if (isEgdeExistsForCurrentNode(depthFirstTraverseStack, currentNodeInfo[0], node)) {
 						addAllConnectedNodesToDFTStack(depthFirstTraverseStack, node);
 						buildPathStack.push(currentNodeInfo);
-					} else {
+					} else
 						depthFirstTraverseStack.pop();
-					}
 				}
 			}
 		}
-		return mapOfAllPossiblePathsBtwTwoNodes;
+		return sortMapByValueAscending(mapOfAllPossiblePathsBtwTwoNodes);
+	}
+
+	private static Map<String, Integer> sortMapByValueAscending(Map<String, Integer> mapOfAllPossiblePathsBtwTwoNodes) {
+		ValueComparator vc = new ValueComparator(mapOfAllPossiblePathsBtwTwoNodes);
+		TreeMap<String, Integer> sortedMapOfAllPossiblePathsBtwTwoNodes = new TreeMap<String, Integer>(vc);
+		sortedMapOfAllPossiblePathsBtwTwoNodes.putAll(mapOfAllPossiblePathsBtwTwoNodes);
+		return sortedMapOfAllPossiblePathsBtwTwoNodes;
 	}
 
 	private static void addNewPathToPossiblePathsList(Stack<String[]> depthFirstTraverseStack,
@@ -63,9 +83,8 @@ public class ShortestPathFinderAlgorithm {
 	}
 
 	private static boolean isNodeAlreadyExistInDFTStack(Stack<String[]> depthFirstTraverseStack, String currentNode) {
-		if (depthFirstTraverseStack.size() == 1) {
+		if (depthFirstTraverseStack.size() == 1)
 			return false;
-		}
 		return CommonUtility.isDuplicateElementInStringArrayList(depthFirstTraverseStack.list(), currentNode);
 	}
 
@@ -76,9 +95,8 @@ public class ShortestPathFinderAlgorithm {
 	}
 
 	private static void addAllConnectedNodesToDFTStack(Stack<String[]> depthFirstTraverseStack, Node node) {
-		for (Edge edge : node.getEdgeList()) {
+		for (Edge edge : node.getEdgeList())
 			depthFirstTraverseStack.push(new String[] { edge.getConnectedNodeName(), edge.getEdgeName() });
-		}
 	}
 
 	private static Map<String, Integer> pathAlongWithDistance(Map<String, Integer> mapOfAllPossiblePathsBtwTwoNodes,
