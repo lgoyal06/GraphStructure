@@ -1,9 +1,9 @@
-package com.lalit.graph.directed;
+package com.lalit.graph.utility;
 
 import java.util.ArrayList;
 import java.util.List;
 
-class Stack<T> {
+public class Stack<T> {
 	private List<T> list = new ArrayList<T>();
 
 	private int top = 0;
@@ -45,7 +45,7 @@ class Stack<T> {
 		return listElement;
 	}
 
-	protected List<T> list() {
+	public List<T> list() {
 		return list;
 	}
 
