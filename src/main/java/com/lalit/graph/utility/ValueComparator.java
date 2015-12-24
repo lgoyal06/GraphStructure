@@ -1,4 +1,4 @@
-package com.lalit.graph.directed;
+package com.lalit.graph.utility;
 
 import java.util.Comparator;
 import java.util.Map;

@@ -1,6 +1,6 @@
 package com.lalit.graph.directed;
 
-class Edge {
+public class Edge {
 	private String connectedNodeName;
 	private String edgeName;
 

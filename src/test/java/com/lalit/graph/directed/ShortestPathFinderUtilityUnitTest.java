@@ -4,6 +4,10 @@ import java.util.Map;
 
 import org.junit.Test;
 
+import com.lalit.graph.algorithm.GraphToMapStructureBuilder;
+import com.lalit.graph.algorithm.GraphToMapStructureBuilderImpl;
+import com.lalit.graph.algorithm.ShortestPathFinderUtility;
+
 import junit.framework.Assert;
 
 @SuppressWarnings("deprecation")
@@ -17,6 +21,7 @@ public class ShortestPathFinderUtilityUnitTest {
 		int expectedResult = 11;
 		Map<String, Integer> listOfPathsBetweenTwoNodes = ShortestPathFinderUtility
 				.findAllPossiblePathsBetweenTwoNodes(map, "S", "T");
+		System.out.println(listOfPathsBetweenTwoNodes);
 		Assert.assertEquals(expectedResult, listOfPathsBetweenTwoNodes.size());
 	}
 

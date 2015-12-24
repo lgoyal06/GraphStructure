@@ -1,6 +1,8 @@
-package com.lalit.graph.directed;
+package com.lalit.graph.algorithm;
 
 import java.util.Map;
+
+import com.lalit.graph.directed.Node;
 
 public interface GraphToMapStructureBuilder {
 
