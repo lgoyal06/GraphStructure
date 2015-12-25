@@ -5,10 +5,10 @@ import java.util.Map.Entry;
 
 import org.junit.Test;
 
-import com.lalit.directed.graph.algorithm.GraphToMapStructureBuilder;
-import com.lalit.directed.graph.algorithm.GraphToMapStructureBuilderImpl;
 import com.lalit.directed.graph.algorithm.ShortestPathFinderAlgorithm;
 import com.lalit.graph.elements.Node;
+import com.lalit.graph.utility.GraphToMapStructureBuilder;
+import com.lalit.graph.utility.GraphToMapStructureBuilderImpl;
 
 import junit.framework.Assert;
 

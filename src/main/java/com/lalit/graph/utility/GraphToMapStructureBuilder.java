@@ -1,4 +1,4 @@
-package com.lalit.directed.graph.algorithm;
+package com.lalit.graph.utility;
 
 import java.util.Map;
 
