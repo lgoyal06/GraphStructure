@@ -21,8 +21,8 @@ public class GraphToMapStructureBuilderImpl implements GraphToMapStructureBuilde
 	 * 
 	 * Input data format [Distance,Node A,Node B]
 	 * 
-	 * Output Format-> Map with <Key name of Node N , Value as List Of All Edges
-	 * Connecting to that Node N>
+	 * Output Format-> Map with <Key: name of Node N , Value: list Of Edges and
+	 * Nodes Name Connected to Node N>
 	 * 
 	 * TODO : Check for the Time complexity of this algorithm
 	 **/

@@ -1,5 +1,8 @@
 package com.lalit.directed.graph.algorithm;
 
+import static com.lalit.graph.utility.CommonUtils.deepCopyOfList;
+import static com.lalit.graph.utility.CommonUtils.isDuplicateElementInStringArrayList;
+
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -8,7 +11,6 @@ import java.util.TreeMap;
 
 import com.lalit.graph.elements.Edge;
 import com.lalit.graph.elements.Node;
-import com.lalit.graph.utility.CommonUtility;
 import com.lalit.graph.utility.Stack;
 import com.lalit.graph.utility.ValueComparator;
 
@@ -36,7 +38,8 @@ public class ShortestPathFinderAlgorithm {
 			finalMapWithShortestPath.put(entry.getKey(), entry.getValue());
 			return finalMapWithShortestPath;
 		}
-		return null;
+		finalMapWithShortestPath.put("", -1);
+		return finalMapWithShortestPath;
 	}
 
 	public static Map<String, Integer> findAllPossiblePathsBetweenTwoNodes(Map<String, Node> graphMap,
@@ -77,7 +80,7 @@ public class ShortestPathFinderAlgorithm {
 	private static void addNewPathToPossiblePathsList(Stack<String[]> depthFirstTraverseStack,
 			Stack<String[]> buildPathStack, Map<String, Integer> mapOfAllPossiblePathsBtwTwoNodes) {
 		buildPathStack.push(depthFirstTraverseStack.pop());
-		List<String[]> listDeepCopy = CommonUtility.deepCopyOfList(buildPathStack.list());
+		List<String[]> listDeepCopy = deepCopyOfList(buildPathStack.list());
 		pathAlongWithDistance(mapOfAllPossiblePathsBtwTwoNodes, listDeepCopy);
 		buildPathStack.pop();
 	}
@@ -85,7 +88,7 @@ public class ShortestPathFinderAlgorithm {
 	private static boolean isNodeAlreadyExistInDFTStack(Stack<String[]> depthFirstTraverseStack, String currentNode) {
 		if (depthFirstTraverseStack.size() == 1)
 			return false;
-		return CommonUtility.isDuplicateElementInStringArrayList(depthFirstTraverseStack.list(), currentNode);
+		return isDuplicateElementInStringArrayList(depthFirstTraverseStack.list(), currentNode);
 	}
 
 	private static boolean isEgdeExistsForCurrentNode(Stack<String[]> depthFirstTraverseStack, String currentNode,

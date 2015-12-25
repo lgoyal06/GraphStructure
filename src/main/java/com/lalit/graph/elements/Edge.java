@@ -12,10 +12,6 @@ public class Edge {
 		return edgeName;
 	}
 
-	public void setEdgeName(String edgeName) {
-		this.edgeName = edgeName;
-	}
-
 	public String getConnectedNodeName() {
 		return connectedNodeName;
 	}
