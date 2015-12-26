@@ -21,7 +21,7 @@ public class ShortestPathFinderUtilityUnitTest {
 		Map<String, Node> map = mapBuilder.buildMapStructure(
 				"C:\\Users\\lalit goyal\\git\\GraphStructureAlgorithms\\src\\test\\resources\\SampleInputFile2");
 		int expectedNumberOfPathsBetweenTwoNodes = 11;
-		Map<String, Integer> listOfPathsBetweenTwoNodes = ShortestPathFinderAlgorithm
+		Map<String, Integer> listOfPathsBetweenTwoNodes = new ShortestPathFinderAlgorithm()
 				.findAllPossiblePathsBetweenTwoNodes(map, "S", "T");
 		Assert.assertEquals(expectedNumberOfPathsBetweenTwoNodes, listOfPathsBetweenTwoNodes.size());
 	}
@@ -33,7 +33,7 @@ public class ShortestPathFinderUtilityUnitTest {
 				"C:\\Users\\lalit goyal\\git\\GraphStructureAlgorithms\\src\\test\\resources\\SampleInputFile2");
 		String expectedPath = "[S,D,T]";
 		int expectedDistance = 10;
-		Map<String, Integer> listOfPathsBetweenTwoNodes = ShortestPathFinderAlgorithm
+		Map<String, Integer> listOfPathsBetweenTwoNodes = new ShortestPathFinderAlgorithm()
 				.findShortestPathAndDistanceBtwTwoNodesInDirectedGraph(map, "S", "T");
 		for (Entry<String, Integer> entry : listOfPathsBetweenTwoNodes.entrySet()) {
 			Assert.assertEquals(expectedDistance, (int) entry.getValue());
@@ -49,7 +49,7 @@ public class ShortestPathFinderUtilityUnitTest {
 				"C:\\Users\\lalit goyal\\git\\GraphStructureAlgorithms\\src\\test\\resources\\SampleInputFile2");
 		String expectedPath = "[S,A]";
 		int expectedDistance = 4;
-		Map<String, Integer> listOfPathsBetweenTwoNodes = ShortestPathFinderAlgorithm
+		Map<String, Integer> listOfPathsBetweenTwoNodes = new ShortestPathFinderAlgorithm()
 				.findShortestPathAndDistanceBtwTwoNodesInDirectedGraph(map, "S", "A");
 		for (Entry<String, Integer> entry : listOfPathsBetweenTwoNodes.entrySet()) {
 			Assert.assertEquals(expectedDistance, (int) entry.getValue());
@@ -65,12 +65,23 @@ public class ShortestPathFinderUtilityUnitTest {
 				"C:\\Users\\lalit goyal\\git\\GraphStructureAlgorithms\\src\\test\\resources\\SampleInputFile2");
 		String expectedPath = "";
 		int expectedDistance = -1;
-		Map<String, Integer> listOfPathsBetweenTwoNodes = ShortestPathFinderAlgorithm
+		Map<String, Integer> listOfPathsBetweenTwoNodes = new ShortestPathFinderAlgorithm()
 				.findShortestPathAndDistanceBtwTwoNodesInDirectedGraph(map, "S", "A1");
 		for (Entry<String, Integer> entry : listOfPathsBetweenTwoNodes.entrySet()) {
 			Assert.assertEquals(expectedDistance, (int) entry.getValue());
 			Assert.assertEquals(expectedPath, entry.getKey());
 			break;
 		}
+	}
+
+	@Test
+	public void positiveTest1ToFindAllPossiblePathBetweenTwoNodes() {
+		GraphToMapStructureBuilder mapBuilder = new GraphToMapStructureBuilderImpl();
+		Map<String, Node> map = mapBuilder.buildMapStructure(
+				"C:\\Users\\lalit goyal\\git\\GraphStructureAlgorithms\\src\\test\\resources\\SampleInputFile3");
+		int expectedNumberOfPathsBetweenTwoNodes = 5;
+		Map<String, Integer> listOfPathsBetweenTwoNodes = new ShortestPathFinderAlgorithm()
+				.findAllPossiblePathsBetweenTwoNodes(map, "A", "K");
+		Assert.assertEquals(expectedNumberOfPathsBetweenTwoNodes, listOfPathsBetweenTwoNodes.size());
 	}
 }

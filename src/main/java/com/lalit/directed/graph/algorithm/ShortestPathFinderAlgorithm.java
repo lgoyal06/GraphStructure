@@ -27,9 +27,9 @@ import com.lalit.graph.utility.ValueComparator;
  *         TODO : Check for the Time complexity of this algorithm
  * 
  */
-public class ShortestPathFinderAlgorithm {
+public final class ShortestPathFinderAlgorithm {
 
-	public static Map<String, Integer> findShortestPathAndDistanceBtwTwoNodesInDirectedGraph(Map<String, Node> graphMap,
+	public Map<String, Integer> findShortestPathAndDistanceBtwTwoNodesInDirectedGraph(Map<String, Node> graphMap,
 			String startingNode, String destinationNode) {
 		Map<String, Integer> sortedMapOfAllPossiblePathsBtwTwoNodes = findAllPossiblePathsBetweenTwoNodes(graphMap,
 				startingNode, destinationNode);
@@ -42,8 +42,8 @@ public class ShortestPathFinderAlgorithm {
 		return finalMapWithShortestPath;
 	}
 
-	public static Map<String, Integer> findAllPossiblePathsBetweenTwoNodes(Map<String, Node> graphMap,
-			String startingNode, String destinationNode) {
+	public Map<String, Integer> findAllPossiblePathsBetweenTwoNodes(Map<String, Node> graphMap, String startingNode,
+			String destinationNode) {
 		Stack<String[]> depthFirstTraverseStack = new Stack<String[]>();
 		depthFirstTraverseStack.push(new String[] { startingNode, "0" });
 		Stack<String[]> buildPathStack = new Stack<String[]>();
@@ -70,39 +70,38 @@ public class ShortestPathFinderAlgorithm {
 		return sortMapByValueAscending(mapOfAllPossiblePathsBtwTwoNodes);
 	}
 
-	private static Map<String, Integer> sortMapByValueAscending(Map<String, Integer> mapOfAllPossiblePathsBtwTwoNodes) {
+	private Map<String, Integer> sortMapByValueAscending(Map<String, Integer> mapOfAllPossiblePathsBtwTwoNodes) {
 		ValueComparator vc = new ValueComparator(mapOfAllPossiblePathsBtwTwoNodes);
 		TreeMap<String, Integer> sortedMapOfAllPossiblePathsBtwTwoNodes = new TreeMap<String, Integer>(vc);
 		sortedMapOfAllPossiblePathsBtwTwoNodes.putAll(mapOfAllPossiblePathsBtwTwoNodes);
 		return sortedMapOfAllPossiblePathsBtwTwoNodes;
 	}
 
-	private static void addNewPathToPossiblePathsList(Stack<String[]> depthFirstTraverseStack,
-			Stack<String[]> buildPathStack, Map<String, Integer> mapOfAllPossiblePathsBtwTwoNodes) {
+	private void addNewPathToPossiblePathsList(Stack<String[]> depthFirstTraverseStack, Stack<String[]> buildPathStack,
+			Map<String, Integer> mapOfAllPossiblePathsBtwTwoNodes) {
 		buildPathStack.push(depthFirstTraverseStack.pop());
 		List<String[]> listDeepCopy = deepCopyOfList(buildPathStack.list());
 		pathAlongWithDistance(mapOfAllPossiblePathsBtwTwoNodes, listDeepCopy);
 		buildPathStack.pop();
 	}
 
-	private static boolean isNodeAlreadyExistInDFTStack(Stack<String[]> depthFirstTraverseStack, String currentNode) {
+	private boolean isNodeAlreadyExistInDFTStack(Stack<String[]> depthFirstTraverseStack, String currentNode) {
 		if (depthFirstTraverseStack.size() == 1)
 			return false;
 		return isDuplicateElementInStringArrayList(depthFirstTraverseStack.list(), currentNode);
 	}
 
-	private static boolean isEgdeExistsForCurrentNode(Stack<String[]> depthFirstTraverseStack, String currentNode,
-			Node node) {
+	private boolean isEgdeExistsForCurrentNode(Stack<String[]> depthFirstTraverseStack, String currentNode, Node node) {
 		return node != null && !isNodeAlreadyExistInDFTStack(depthFirstTraverseStack, currentNode)
 				&& node.getEdgeList().size() > 0;
 	}
 
-	private static void addAllConnectedNodesToDFTStack(Stack<String[]> depthFirstTraverseStack, Node node) {
+	private void addAllConnectedNodesToDFTStack(Stack<String[]> depthFirstTraverseStack, Node node) {
 		for (Edge edge : node.getEdgeList())
 			depthFirstTraverseStack.push(new String[] { edge.getConnectedNodeName(), edge.getEdgeName() });
 	}
 
-	private static Map<String, Integer> pathAlongWithDistance(Map<String, Integer> mapOfAllPossiblePathsBtwTwoNodes,
+	private Map<String, Integer> pathAlongWithDistance(Map<String, Integer> mapOfAllPossiblePathsBtwTwoNodes,
 			List<String[]> path) {
 		String pathName = "[";
 		int totalDistance = 0;
