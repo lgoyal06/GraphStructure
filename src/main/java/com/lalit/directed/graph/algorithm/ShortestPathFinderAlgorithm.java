@@ -59,7 +59,8 @@ public final class ShortestPathFinderAlgorithm {
 					buildPathStack.pop();
 				} else {
 					Node node = graphMap.get(currentNodeInfo[0]);
-					if (isEgdeExistsForCurrentNode(depthFirstTraverseStack, currentNodeInfo[0], node)) {
+					if (!isCurrentNodeAlreadyExistInDFTStack(depthFirstTraverseStack, currentNodeInfo[0])
+							&& isEgdeExistsForCurrentNode(depthFirstTraverseStack, currentNodeInfo[0], node)) {
 						addAllConnectedNodesToDFTStack(depthFirstTraverseStack, node);
 						buildPathStack.push(currentNodeInfo);
 					} else
@@ -85,15 +86,12 @@ public final class ShortestPathFinderAlgorithm {
 		buildPathStack.pop();
 	}
 
-	private boolean isNodeAlreadyExistInDFTStack(Stack<String[]> depthFirstTraverseStack, String currentNode) {
-		if (depthFirstTraverseStack.size() == 1)
-			return false;
+	private boolean isCurrentNodeAlreadyExistInDFTStack(Stack<String[]> depthFirstTraverseStack, String currentNode) {
 		return isDuplicateElementInStringArrayList(depthFirstTraverseStack.list(), currentNode);
 	}
 
 	private boolean isEgdeExistsForCurrentNode(Stack<String[]> depthFirstTraverseStack, String currentNode, Node node) {
-		return node != null && !isNodeAlreadyExistInDFTStack(depthFirstTraverseStack, currentNode)
-				&& node.getEdgeList().size() > 0;
+		return node != null && node.getEdgeList().size() > 0;
 	}
 
 	private void addAllConnectedNodesToDFTStack(Stack<String[]> depthFirstTraverseStack, Node node) {

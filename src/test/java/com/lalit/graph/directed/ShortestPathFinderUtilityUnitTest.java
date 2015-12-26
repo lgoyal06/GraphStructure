@@ -80,8 +80,16 @@ public class ShortestPathFinderUtilityUnitTest {
 		Map<String, Node> map = mapBuilder.buildMapStructure(
 				"C:\\Users\\lalit goyal\\git\\GraphStructureAlgorithms\\src\\test\\resources\\SampleInputFile3");
 		int expectedNumberOfPathsBetweenTwoNodes = 5;
+		String[] paths = new String[] { "[A,B,D,K]", "[A,B,E,K]", "[A,B,D,E,K]", "[A,B,E,F,K]", "[A,B,D,E,F,K]" };
+		int[] pathDistance = new int[] { 14, 15, 16, 19, 20 };
 		Map<String, Integer> listOfPathsBetweenTwoNodes = new ShortestPathFinderAlgorithm()
 				.findAllPossiblePathsBetweenTwoNodes(map, "A", "K");
 		Assert.assertEquals(expectedNumberOfPathsBetweenTwoNodes, listOfPathsBetweenTwoNodes.size());
+		int count = 0;
+		for (Entry<String, Integer> entry : listOfPathsBetweenTwoNodes.entrySet()) {
+			Assert.assertEquals(pathDistance[count], (int) entry.getValue());
+			Assert.assertEquals(paths[count], entry.getKey());
+			++count;
+		}
 	}
 }
