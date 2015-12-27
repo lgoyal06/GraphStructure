@@ -5,6 +5,7 @@ import java.util.Map.Entry;
 
 import org.junit.Test;
 
+import com.lalit.directed.graph.algorithm.DijkstraAlgorithmImplementation;
 import com.lalit.directed.graph.algorithm.ShortestPathFinderAlgorithm;
 import com.lalit.graph.elements.Node;
 import com.lalit.graph.utility.GraphToMapStructureBuilder;
@@ -92,4 +93,18 @@ public class ShortestPathFinderUtilityUnitTest {
 			++count;
 		}
 	}
+
+	@Test
+	public void positiveTestDijkstrasAlgoToFindShortestPathBetweenTwoNodes() {
+		GraphToMapStructureBuilder mapBuilder = new GraphToMapStructureBuilderImpl();
+		Map<String, Node> map = mapBuilder.buildMapStructure(
+				"C:\\Users\\lalit goyal\\git\\GraphStructureAlgorithms\\src\\test\\resources\\SampleInputFile2");
+		String expectedShortestPath = "S,A,C,E,G,T";
+		String expectedShortestPathWeight = "11";
+		String[] shortestPathAndWeight = new DijkstraAlgorithmImplementation().findShortestPathBetweenTwoNodes(map, "S",
+				"T");
+		Assert.assertEquals(expectedShortestPath, shortestPathAndWeight[0]);
+		Assert.assertEquals(expectedShortestPathWeight, shortestPathAndWeight[1]);
+	}
+
 }
