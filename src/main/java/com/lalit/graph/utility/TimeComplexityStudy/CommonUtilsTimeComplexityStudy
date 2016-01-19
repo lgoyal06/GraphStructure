@@ -1,0 +1,36 @@
+package com.lalit.graph.utility;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class CommonUtils {
+
+	public static boolean isDuplicateElementInStringArrayList(List<String[]> list, String element) {
+		// Primitive operation
+		boolean isElementFound = false;
+		// Worst Case - O(n)
+		// Average case - O(n/2)
+		// Best case - 1
+		for (String[] elem : list) {
+			if (element.equalsIgnoreCase(elem[0])) {
+				if (isElementFound)
+					return true;
+				else
+					isElementFound = true;
+			}
+		}
+		return false;
+	}
+
+	public static List<String[]> deepCopyOfList(List<String[]> list) {
+		// Memory reference
+		List<String[]> listCopy = new ArrayList<>();
+		// O(n) - where n is the number of elements in the list
+		for (String[] array : list) {
+			// TODO : Look for the clone function and see if it meet your
+			// requirement i.e. Deep or Shallow Copy
+			listCopy.add((String[]) array.clone());
+		}
+		return listCopy;
+	}
+}
