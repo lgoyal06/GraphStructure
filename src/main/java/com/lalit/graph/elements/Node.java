@@ -5,7 +5,7 @@ import java.util.List;
 
 public class Node {
 
-	public List<Edge> edgeList;
+	private List<Edge> edgeList;
 
 	public List<Edge> getEdgeList() {
 		if (edgeList == null) {
