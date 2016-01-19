@@ -18,7 +18,7 @@ public final class ValueComparator implements Comparator<String> {
 
 	// O(log n) to find the place for the one element in the binary tree of n
 	// elements
-	// total for sorting the n elements it will take O(nlogn)
+	// total for sorting the n elements it will take n* O(logn)
 	public int compare(String a, String b) {
 		if (map.get(a) >= map.get(b)) {
 			return 1;
