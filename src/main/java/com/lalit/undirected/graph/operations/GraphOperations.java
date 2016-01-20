@@ -6,6 +6,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
 
+import com.lalit.graph.elements.Edge;
+
 public class GraphOperations {
 
 	Map<String, List<Edge>> graphMap = new TreeMap<>();
