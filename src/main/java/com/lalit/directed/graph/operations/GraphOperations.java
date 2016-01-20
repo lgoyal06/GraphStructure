@@ -1,4 +1,4 @@
-package directed.graph.operations;
+package com.lalit.directed.graph.operations;
 
 import java.util.HashSet;
 import java.util.Iterator;
@@ -8,11 +8,16 @@ import java.util.TreeMap;
 
 import com.lalit.graph.elements.Edge;
 
+/**
+ * @author lalit goyal
+ */
 public class GraphOperations {
 
 	Map<String, Set<Edge>> graphMap = new TreeMap<>();
 
-	// TODO Graph Add Operation
+	// TODO : Finish the Logic addOperation
+	// TODO : JUnit test cases
+	// TODO : Time Complexity Study
 	private boolean addOperation(String fromNodeName, String toNodeName, String edgeName) {
 		try {
 			if (!graphMap.containsKey(fromNodeName)) {
