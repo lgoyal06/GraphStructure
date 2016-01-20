@@ -11,6 +11,7 @@ public class GraphOperations {
 	Map<String, List<Edge>> graphMap = new TreeMap<>();
 
 	// TODO Graph Add Operation Logic
+	@SuppressWarnings("unused")
 	private boolean addOperation(String nodeName, String connectedNode, String edgeName) {
 		return false;
 
