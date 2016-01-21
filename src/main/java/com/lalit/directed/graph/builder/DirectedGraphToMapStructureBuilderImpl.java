@@ -1,4 +1,4 @@
-package com.lalit.graph.utility;
+package com.lalit.directed.graph.builder;
 
 import java.io.BufferedReader;
 import java.io.FileInputStream;
@@ -10,8 +10,9 @@ import java.util.TreeMap;
 
 import com.lalit.graph.elements.Edge;
 import com.lalit.graph.elements.Node;
+import com.lalit.graph.utility.GraphToMapStructureBuilder;
 
-public class GraphToMapStructureBuilderImpl implements GraphToMapStructureBuilder {
+public class DirectedGraphToMapStructureBuilderImpl implements GraphToMapStructureBuilder {
 
 	/**
 	 * 

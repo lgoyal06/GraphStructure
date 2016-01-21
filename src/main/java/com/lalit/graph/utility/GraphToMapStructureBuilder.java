@@ -6,6 +6,6 @@ import com.lalit.graph.elements.Node;
 
 public interface GraphToMapStructureBuilder {
 
-	public Map<String, Node> buildMapStructure(String filePath);
+	Map<String, Node> buildMapStructure(String filePath);
 
 }
