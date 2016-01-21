@@ -2,7 +2,7 @@ Algorithm to Insert Nodes or Edges to Directed Graph
 
 INSERTOperations(String fromNodeName, String toNodeName, String edgeName)
 
-Data Structure used to store the Graph : Set graphMap:= TreeMap<String fromNodeName, Set<Edge> edges>
+Concrete Data Structure used to store the Graph : Set graphMap:= TreeMap<String fromNodeName, Set<Edge> edges>
 		-> Key is NodeA i.e. fromNodeName
 		-> Value as set of all edges connecting to NodeA and 
 			->Edges contains connectingNode i.e. NodeB and edgeInformation like weight or edge 	name

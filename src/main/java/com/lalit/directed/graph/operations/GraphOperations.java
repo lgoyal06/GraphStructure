@@ -26,7 +26,8 @@ public class GraphOperations {
 	 * complexity is ~ O(logn)
 	 * </p>
 	 * 
-	 * TODO 1. Finish the Logic addOperation , 2. JUnit test cases
+	 * TODO 1. Finish the Logic addOperation , 2. JUnit test cases by 22nd Jan
+	 * 2016
 	 * 
 	 * @param fromNodeName
 	 * @param toNodeName
@@ -62,7 +63,7 @@ public class GraphOperations {
 		}
 	}
 
-	// TODO:Fix it
+	// TODO:Fix it by 22nd Jan 2016
 	public boolean deleteNodeOperation(String nodeToBeDeleted) {
 		return false;
 
