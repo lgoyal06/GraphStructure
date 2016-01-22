@@ -63,8 +63,27 @@ public class GraphOperationsImplViaMapStructure implements GraphOperations {
 		}
 	}
 
+	public boolean insertEdgeOperation(String fromNodeName, String toNodeName, String edgeName) {
+		return false;
+
+	}
+
 	// TODO:Fix it by 22nd Jan 2016
+	/**
+	 * Challenge : With current DS, it will take around 0(n*e) ~ O(n^2) time to
+	 * delete a Node from graph
+	 * 
+	 * > O(logn) - Remove the NodeA from map including all outgoing edges for
+	 * NodeA
+	 * 
+	 * > O((n-1)*e) - Time to remove incoming edges for NodeA.
+	 * 
+	 * > Total Time Complexity comes out to be approximate O(n^2)
+	 * 
+	 * 
+	 **/
 	public boolean deleteNodeOperation(String nodeToBeDeleted) {
+
 		return false;
 
 	}
