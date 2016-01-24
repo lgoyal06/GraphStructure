@@ -8,9 +8,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
 
+import com.lalit.graph.builder.GraphToMapStructureBuilder;
 import com.lalit.graph.elements.Edge;
 import com.lalit.graph.elements.Node;
-import com.lalit.graph.utility.GraphToMapStructureBuilder;
 
 public class DirectedGraphToMapStructureBuilderImpl implements GraphToMapStructureBuilder {
 
