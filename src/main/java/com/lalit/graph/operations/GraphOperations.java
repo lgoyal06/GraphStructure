@@ -1,4 +1,4 @@
-package com.lalit.directed.graph.operations;
+package com.lalit.graph.operations;
 
 public interface GraphOperations {
 

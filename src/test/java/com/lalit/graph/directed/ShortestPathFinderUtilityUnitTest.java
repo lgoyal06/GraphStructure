@@ -8,8 +8,8 @@ import org.junit.Test;
 import com.lalit.directed.graph.algorithm.DijkstraAlgorithmImplementation;
 import com.lalit.directed.graph.algorithm.ShortestPathFinderAlgorithm;
 import com.lalit.directed.graph.builder.DirectedGraphToMapStructureBuilderImpl;
+import com.lalit.graph.builder.GraphToMapStructureBuilder;
 import com.lalit.graph.elements.Node;
-import com.lalit.graph.utility.GraphToMapStructureBuilder;
 
 import junit.framework.Assert;
 

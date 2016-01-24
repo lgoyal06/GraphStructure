@@ -5,9 +5,9 @@ import java.util.Map;
 import java.util.Scanner;
 
 import com.lalit.directed.graph.builder.DirectedGraphToMapStructureBuilderImpl;
+import com.lalit.graph.builder.GraphToMapStructureBuilder;
 import com.lalit.graph.elements.Edge;
 import com.lalit.graph.elements.Node;
-import com.lalit.graph.utility.GraphToMapStructureBuilder;
 
 /**
  * @author lalit goyal

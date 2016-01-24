@@ -7,6 +7,7 @@ import java.util.Set;
 import java.util.TreeMap;
 
 import com.lalit.graph.elements.Edge;
+import com.lalit.graph.operations.GraphOperations;
 
 /**
  * @author lalit goyal
@@ -15,7 +16,7 @@ import com.lalit.graph.elements.Edge;
  * @param edgeName
  * @return
  */
-public class GraphOperationsImplViaMapStructure implements GraphOperations {
+public class DirectedGraphOperationsImplViaMapStructure implements GraphOperations {
 
 	Map<String, Set<Edge>> graphMap = new TreeMap<>();
 
@@ -113,7 +114,7 @@ public class GraphOperationsImplViaMapStructure implements GraphOperations {
 	}
 
 	public static void main(String... s) {
-		GraphOperationsImplViaMapStructure graphOperation = new GraphOperationsImplViaMapStructure();
+		DirectedGraphOperationsImplViaMapStructure graphOperation = new DirectedGraphOperationsImplViaMapStructure();
 		graphOperation.insertOperation("A", "B", "");
 		graphOperation.insertOperation("B", "C", "");
 		graphOperation.insertOperation("C", "A", "");
