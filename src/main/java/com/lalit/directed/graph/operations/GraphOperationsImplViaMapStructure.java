@@ -80,11 +80,20 @@ public class GraphOperationsImplViaMapStructure implements GraphOperations {
 	 * 
 	 * > Total Time Complexity comes out to be approximate O(n^2)
 	 * 
+	 * Solution :: Build the structure using the List CDS Refer to the file for
+	 * few days --->> GraphToEdgeNodeListBuilder.java
+	 * 
 	 **/
 	public boolean deleteNodeOperation(String nodeToBeDeleted) {
 
-		return false;
+		/**
+		 * To delete the Node and outgoing Edge--> Iterate over map and delete
+		 * 
+		 * Delete incoming Edges for Node --> Now iterate over all key of Map
+		 * and remove the incoming Edge
+		 **/
 
+		return false;
 	}
 
 	// TODO:Fix it by 22nd Jan 2016
