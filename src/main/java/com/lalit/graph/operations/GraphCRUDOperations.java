@@ -2,19 +2,19 @@ package com.lalit.graph.operations;
 
 public interface GraphCRUDOperations {
 
-	boolean insertOperation(String fromNodeName, String toNodeName, String edgeName);
+	boolean insert(String fromNodeName, String toNodeName, String edgeName);
 
-	boolean deleteNodeOperation(String nodeToBeDeleted);
+	boolean deleteNode(String nodeToBeDeleted);
 
-	boolean deleteEdgeOperation(String edgeName);
+	boolean deleteEdge(String edgeName);
 
 	boolean updateNodeInfo();
 
 	boolean updateEdgeInfo();
 
-	Object insertNodeOperation(String fromNodeName);
+	Object insertNode(String fromNodeName);
 
-	boolean insertDirectedEdgeOperation(String fromNodeName, String toNodeName, String edgeName);
+	boolean insertDirectedEdge(String fromNodeName, String toNodeName, String edgeName);
 
-	boolean insertUndirectedEdgeOperation(String nodeA, String nodeB, String edgeName);
+	boolean insertUndirectedEdge(String nodeA, String nodeB, String edgeName);
 }

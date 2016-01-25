@@ -5,19 +5,19 @@ import com.lalit.graph.operations.GraphCRUDOperations;
 public class UndirectedGraphOperationsImpl implements GraphCRUDOperations {
 
 	@Override
-	public boolean insertOperation(String fromNodeName, String toNodeName, String edgeName) {
+	public boolean insert(String fromNodeName, String toNodeName, String edgeName) {
 		// TODO Auto-generated method stub
 		return false;
 	}
 
 	@Override
-	public boolean deleteNodeOperation(String nodeToBeDeleted) {
+	public boolean deleteNode(String nodeToBeDeleted) {
 		// TODO Auto-generated method stub
 		return false;
 	}
 
 	@Override
-	public boolean deleteEdgeOperation(String edgeName) {
+	public boolean deleteEdge(String edgeName) {
 		// TODO Auto-generated method stub
 		return false;
 	}
@@ -35,19 +35,19 @@ public class UndirectedGraphOperationsImpl implements GraphCRUDOperations {
 	}
 
 	@Override
-	public Object insertNodeOperation(String fromNodeName) {
+	public Object insertNode(String fromNodeName) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public boolean insertDirectedEdgeOperation(String fromNodeName, String toNodeName, String edgeName) {
+	public boolean insertDirectedEdge(String fromNodeName, String toNodeName, String edgeName) {
 		// TODO Auto-generated method stub
 		return false;
 	}
 
 	@Override
-	public boolean insertUndirectedEdgeOperation(String nodeA, String nodeB, String edgeName) {
+	public boolean insertUndirectedEdge(String nodeA, String nodeB, String edgeName) {
 		// TODO Auto-generated method stub
 		return false;
 	}

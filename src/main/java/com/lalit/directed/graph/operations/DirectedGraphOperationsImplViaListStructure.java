@@ -18,40 +18,24 @@ import com.lalit.graph.operations.GraphCRUDOperations;
  */
 public class DirectedGraphOperationsImplViaListStructure implements GraphCRUDOperations {
 
-	List<Edge> edgeList = new ArrayList<Edge>();
-	Map<String, Node> nodeMap = new TreeMap<String, Node>();
-
-	public Map<String, Node> getNodeMap() {
-		return nodeMap;
-	}
-
-	public void setNodeMap(Map<String, Node> nodeMap) {
-		this.nodeMap = nodeMap;
-	}
-
-	public List<Edge> getEdgeList() {
-		return edgeList;
-	}
-
-	public void setEdgeList(List<Edge> edgeList) {
-		this.edgeList = edgeList;
-	}
+	private List<Edge> edgeList = new ArrayList<Edge>();
+	private Map<String, Node> nodeMap = new TreeMap<String, Node>();
 
 	@Override
-	public boolean insertOperation(String fromNodeName, String toNodeName, String edgeName) {
+	public boolean insert(String fromNodeName, String toNodeName, String edgeName) {
 		// TODO Auto-generated method stub
 
 		return false;
 	}
 
-	public Node insertNodeOperation(String fromNodeName) {
+	public Node insertNode(String nodeName) {
 		Node node = new Node();
-		node.setNodeName(fromNodeName);
+		node.setNodeName(nodeName);
 		// O(logn) time operation
-		return nodeMap.put(fromNodeName, node);
+		return nodeMap.put(nodeName, node);
 	}
 
-	public Node insertNodeOperation(String nodeName, boolean isIncomingEdge, boolean isOutgoingEdge, String edgeName) {
+	public Node insertNode(String nodeName, boolean isIncomingEdge, boolean isOutgoingEdge, String edgeName) {
 		// Find the existing Node : Time Complexity O(logn)
 		Node node = nodeMap.get(nodeName);
 		if (node == null) {
@@ -70,7 +54,7 @@ public class DirectedGraphOperationsImplViaListStructure implements GraphCRUDOpe
 	}
 
 	@Override
-	public boolean insertDirectedEdgeOperation(String fromNodeName, String toNodeName, String edgeName) {
+	public boolean insertDirectedEdge(String fromNodeName, String toNodeName, String edgeName) {
 		// Create an Edge
 		Edge edge = new Edge();
 		edge.setNodeA(fromNodeName);
@@ -80,15 +64,25 @@ public class DirectedGraphOperationsImplViaListStructure implements GraphCRUDOpe
 		edgeList.add(edge);
 
 		// Insert the From and To Node to the nodeMap if not exist
-		insertNodeOperation(fromNodeName, false, true, edgeName);
-		insertNodeOperation(toNodeName, true, false, edgeName);
+		insertNode(fromNodeName, false, true, edgeName);
+		insertNode(toNodeName, true, false, edgeName);
 
 		return true;
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see com.lalit.graph.operations.GraphCRUDOperations#
+	 * insertUndirectedEdgeOperation(java.lang.String, java.lang.String,
+	 * java.lang.String)
+	 * 
+	 * Assumption : edgeName will be unique i.e. no two EdgeName can be same
+	 */
 	@Override
-	public boolean insertUndirectedEdgeOperation(String nodeA, String nodeB, String edgeName) {
+	public boolean insertUndirectedEdge(String nodeA, String nodeB, String edgeName) {
 		// Create an Edge
+		// TODO check in case edge already exists
 		Edge edge = new Edge();
 		edge.setNodeA(nodeA);
 		edge.setNodeB(nodeB);
@@ -97,22 +91,51 @@ public class DirectedGraphOperationsImplViaListStructure implements GraphCRUDOpe
 		edgeList.add(edge);
 
 		// Insert the From and To Node to the nodeMap if not exist
-		insertNodeOperation(nodeA, false, false, edgeName);
-		insertNodeOperation(nodeB, false, false, edgeName);
+		insertNode(nodeA, false, false, edgeName);
+		insertNode(nodeB, false, false, edgeName);
 
 		return true;
 	}
 
 	@Override
-	public boolean deleteNodeOperation(String nodeToBeDeleted) {
+	public boolean deleteNode(String nodeToBeDeleted) {
+		// TODO 1. Remove all incoming,outgoing and undirected Edges of
+		// nodeTobedeleted from nodeMap
+		// 2.Remove incoming,outgoing and undirected Edges of few of other Nodes
+		// from nodeMap
+		// 3.Remove the edges from the edgelist
+
+		/**
+		 * TODO Option 1: iterate over the edgeList and remove edges containing
+		 * nodeToBeDeleted. Also remove delete edges from Other Nodes in nodeMap
+		 * 
+		 * Time Complexity::> O(e) (to iterate over all edges)+O(e) to delete
+		 * the edge that requires the re shuffling +O(n)+O(size of edges for
+		 * each node)(iterate over all nodes and remove the edges from the node
+		 * 
+		 * 
+		 * Option 2 : Get the list of all incoming,outgoing and undirected Edges
+		 * of nodeToBedeleted and then delete it from the edgelist. Also remove
+		 * delete edges from Other Nodes in nodeMap
+		 * 
+		 * Time Complexity :::> O(logn) to find the node Let m is the size of
+		 * all edges from the node then time complexity to delete the nodes from
+		 * the edgelist is O(e) worst case to find the edge and then O(e)to
+		 * perform the re shuffling Total time complexity would be around
+		 * 2m*O(e) which is ~ o(e) as per the theorem of Big-oh notation
+		 * 
+		 * +O(n)+O(size of edges for each node)(iterate over all nodes and
+		 * remove the edges from the node
+		 * 
+		 **/
+
 		// O(logn) time complexity
 		nodeMap.remove(nodeToBeDeleted);
-		// TODO Find all the edges and remove the Edge from the edge list
 		return false;
 	}
 
 	@Override
-	public boolean deleteEdgeOperation(String edgeName) {
+	public boolean deleteEdge(String edgeName) {
 		// Time Complexity Worst - O(n) - remove the edge from the Graph
 		// Average Complexity - O(n/2)
 		edgeList.remove(edgeName);
@@ -133,13 +156,14 @@ public class DirectedGraphOperationsImplViaListStructure implements GraphCRUDOpe
 
 	public static void main(String... s) {
 		DirectedGraphOperationsImplViaListStructure graph = new DirectedGraphOperationsImplViaListStructure();
-		graph.insertNodeOperation("A");
-		graph.insertNodeOperation("B");
-		graph.insertNodeOperation("E");
-		graph.insertDirectedEdgeOperation("B", "A", "Test");
-		graph.insertDirectedEdgeOperation("C", "A", "EdgeFromCToA");
-		graph.insertDirectedEdgeOperation("B", "C", "EdgeFromBToC");
-		graph.insertUndirectedEdgeOperation("B", "D", "UndirectedEdgeFromBToD");
+		graph.insertNode("A");
+		graph.insertNode("B");
+		graph.insertNode("E");
+		graph.insertDirectedEdge("B", "A", "Test");
+		graph.insertDirectedEdge("C", "A", "EdgeFromCToA");
+		graph.insertDirectedEdge("B", "C", "EdgeFromBToC");
+		graph.insertUndirectedEdge("B", "D", "UndirectedEdgeFromBToD");
 		System.out.println(graph);
 	}
+
 }

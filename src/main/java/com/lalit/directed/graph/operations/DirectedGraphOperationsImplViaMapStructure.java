@@ -36,7 +36,7 @@ public class DirectedGraphOperationsImplViaMapStructure implements GraphCRUDOper
 	 * @return
 	 */
 
-	public boolean insertOperation(String fromNodeName, String toNodeName, String edgeName) {
+	public boolean insert(String fromNodeName, String toNodeName, String edgeName) {
 		try {
 			// O(logn)
 			if (!graphMap.containsKey(fromNodeName)) {
@@ -64,7 +64,7 @@ public class DirectedGraphOperationsImplViaMapStructure implements GraphCRUDOper
 		}
 	}
 
-	public boolean insertEdgeOperation(String fromNodeName, String toNodeName, String edgeName) {
+	public boolean insertEdge(String fromNodeName, String toNodeName, String edgeName) {
 		return false;
 
 	}
@@ -85,7 +85,7 @@ public class DirectedGraphOperationsImplViaMapStructure implements GraphCRUDOper
 	 * few days --->> DirectedGraphOperationsImplViaListStructure.java
 	 * 
 	 **/
-	public boolean deleteNodeOperation(String nodeToBeDeleted) {
+	public boolean deleteNode(String nodeToBeDeleted) {
 
 		/**
 		 * To delete the Node and outgoing Edge--> Iterate over map and delete
@@ -98,7 +98,7 @@ public class DirectedGraphOperationsImplViaMapStructure implements GraphCRUDOper
 	}
 
 	// TODO:Fix it by 22nd Jan 2016
-	public boolean deleteEdgeOperation(String edgeName) {
+	public boolean deleteEdge(String edgeName) {
 		return false;
 	}
 
@@ -113,14 +113,32 @@ public class DirectedGraphOperationsImplViaMapStructure implements GraphCRUDOper
 		return false;
 	}
 
+	@Override
+	public Object insertNode(String fromNodeName) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public boolean insertDirectedEdge(String fromNodeName, String toNodeName, String edgeName) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean insertUndirectedEdge(String nodeA, String nodeB, String edgeName) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
 	public static void main(String... s) {
 		DirectedGraphOperationsImplViaMapStructure graphOperation = new DirectedGraphOperationsImplViaMapStructure();
-		graphOperation.insertOperation("A", "B", "");
-		graphOperation.insertOperation("B", "C", "");
-		graphOperation.insertOperation("C", "A", "");
-		graphOperation.insertOperation("C", "B", "");
-		graphOperation.insertOperation("A", "B", "HELLO");
-		graphOperation.insertOperation("C", "D", "HELLO");
+		graphOperation.insert("A", "B", "");
+		graphOperation.insert("B", "C", "");
+		graphOperation.insert("C", "A", "");
+		graphOperation.insert("C", "B", "");
+		graphOperation.insert("A", "B", "HELLO");
+		graphOperation.insert("C", "D", "HELLO");
 		for (String key : graphOperation.graphMap.keySet()) {
 			Iterator<Edge> it = graphOperation.graphMap.get(key).iterator();
 			System.out.println(key + " Friend List::");
@@ -129,23 +147,5 @@ public class DirectedGraphOperationsImplViaMapStructure implements GraphCRUDOper
 				System.out.println("\t" + edge.getConnectedNodeName());
 			}
 		}
-	}
-
-	@Override
-	public Object insertNodeOperation(String fromNodeName) {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	@Override
-	public boolean insertDirectedEdgeOperation(String fromNodeName, String toNodeName, String edgeName) {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	@Override
-	public boolean insertUndirectedEdgeOperation(String nodeA, String nodeB, String edgeName) {
-		// TODO Auto-generated method stub
-		return false;
 	}
 }
