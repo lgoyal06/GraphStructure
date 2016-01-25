@@ -7,7 +7,7 @@ import java.util.Set;
 import java.util.TreeMap;
 
 import com.lalit.graph.elements.Edge;
-import com.lalit.graph.operations.GraphOperations;
+import com.lalit.graph.operations.GraphCRUDOperations;
 
 /**
  * @author lalit goyal
@@ -16,7 +16,7 @@ import com.lalit.graph.operations.GraphOperations;
  * @param edgeName
  * @return
  */
-public class DirectedGraphOperationsImplViaMapStructure implements GraphOperations {
+public class DirectedGraphOperationsImplViaMapStructure implements GraphCRUDOperations {
 
 	Map<String, Set<Edge>> graphMap = new TreeMap<>();
 
@@ -82,7 +82,7 @@ public class DirectedGraphOperationsImplViaMapStructure implements GraphOperatio
 	 * > Total Time Complexity comes out to be approximate O(n^2)
 	 * 
 	 * Solution :: Build the structure using the List CDS Refer to the file for
-	 * few days --->> GraphToEdgeNodeListBuilder.java
+	 * few days --->> DirectedGraphOperationsImplViaListStructure.java
 	 * 
 	 **/
 	public boolean deleteNodeOperation(String nodeToBeDeleted) {
@@ -98,7 +98,7 @@ public class DirectedGraphOperationsImplViaMapStructure implements GraphOperatio
 	}
 
 	// TODO:Fix it by 22nd Jan 2016
-	public boolean deleteEdgeOperation(String toNodeName, String edgeName) {
+	public boolean deleteEdgeOperation(String edgeName) {
 		return false;
 	}
 
@@ -129,5 +129,23 @@ public class DirectedGraphOperationsImplViaMapStructure implements GraphOperatio
 				System.out.println("\t" + edge.getConnectedNodeName());
 			}
 		}
+	}
+
+	@Override
+	public Object insertNodeOperation(String fromNodeName) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean insertDirectedEdgeOperation(String fromNodeName, String toNodeName, String edgeName) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean insertUndirectedEdgeOperation(String nodeA, String nodeB, String edgeName) {
+		// TODO Auto-generated method stub
+		return false;
 	}
 }

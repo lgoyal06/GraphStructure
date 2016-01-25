@@ -1,8 +1,8 @@
 package com.lalit.undirected.graph.operations;
 
-import com.lalit.graph.operations.GraphOperations;
+import com.lalit.graph.operations.GraphCRUDOperations;
 
-public class UndirectedGraphOperationsImpl implements GraphOperations {
+public class UndirectedGraphOperationsImpl implements GraphCRUDOperations {
 
 	@Override
 	public boolean insertOperation(String fromNodeName, String toNodeName, String edgeName) {
@@ -17,7 +17,7 @@ public class UndirectedGraphOperationsImpl implements GraphOperations {
 	}
 
 	@Override
-	public boolean deleteEdgeOperation(String toNodeName, String edgeName) {
+	public boolean deleteEdgeOperation(String edgeName) {
 		// TODO Auto-generated method stub
 		return false;
 	}
@@ -33,4 +33,23 @@ public class UndirectedGraphOperationsImpl implements GraphOperations {
 		// TODO Auto-generated method stub
 		return false;
 	}
+
+	@Override
+	public Object insertNodeOperation(String fromNodeName) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public boolean insertDirectedEdgeOperation(String fromNodeName, String toNodeName, String edgeName) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean insertUndirectedEdgeOperation(String nodeA, String nodeB, String edgeName) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
 }
