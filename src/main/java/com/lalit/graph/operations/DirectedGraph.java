@@ -1,6 +1,6 @@
 package com.lalit.graph.operations;
 
-public interface GraphCRUDOperations {
+public interface DirectedGraph {
 
 	boolean insert(String fromNodeName, String toNodeName, String edgeName);
 
