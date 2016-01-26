@@ -4,7 +4,7 @@ import org.junit.Ignore;
 
 import com.lalit.directed.graph.operations.DirectedGraphImpl;
 
-public class DirectedGraphOperationsImplViaListStructureUnitTest {
+public class DirectedGraphImplUnitTest {
 
 	@Ignore
 	public void givenEmptyGraphWhenInsertNodePrformedThenExpectGraphUpdatedWithNode() {
@@ -28,5 +28,4 @@ public class DirectedGraphOperationsImplViaListStructureUnitTest {
 		System.out.println(graph);
 
 	}
-
 }
