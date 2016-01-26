@@ -4,13 +4,6 @@ import org.junit.Ignore;
 
 import com.lalit.directed.graph.operations.DirectedGraphImpl;
 
-/**
- * @author lalit goyal
- * @param fromNodeName
- * @param toNodeName
- * @param edgeName
- * @return
- */
 public class DirectedGraphOperationsImplViaListStructureUnitTest {
 
 	@Ignore
