@@ -16,6 +16,8 @@ import com.lalit.graph.operations.DirectedGraph;
  * @param toNodeName
  * @param edgeName
  * @return
+ * 
+ * 		TODO: Complete study of the Time Complexity by Dated 29th Jan 2016
  */
 public class DirectedGraphImpl implements DirectedGraph {
 
@@ -46,7 +48,8 @@ public class DirectedGraphImpl implements DirectedGraph {
 		edge.setToNode(toNodeName);
 		edge.setDirectedEdge(true);
 		edgeList.add(edge);
-		// Insert the From and To Node to the nodeMap if not exist
+		// Insert the From and To Node to the nodeMap if not exist 4*O(logn)
+		// time complexity
 		insertNode(fromNodeName);
 		insertNode(toNodeName);
 		return true;
@@ -100,31 +103,31 @@ public class DirectedGraphImpl implements DirectedGraph {
 
 	@Override
 	public boolean updateNodeInfo(String nodeName) {
-		// TODO Auto-generated method stub
+		// TODO Dated 27th Jan 2016
 		return false;
 	}
 
 	@Override
 	public boolean makeUndirected(String edgeName) {
-		// TODO Auto-generated method stub
+		// TODO Dated 27th Jan 2016
 		return false;
 	}
 
 	@Override
 	public boolean reverseDirection(String edgeName) {
-		// TODO Auto-generated method stub
+		// TODO Dated 27th Jan 2016
 		return false;
 	}
 
 	@Override
 	public boolean setDirectionFrom(String edgeName, String newFromNodeName) {
-		// TODO Auto-generated method stub
+		// TODO Dated 27th Jan 2016
 		return false;
 	}
 
 	@Override
 	public boolean setDirectionTo(String edgeName, String newToNodeName) {
-		// TODO Auto-generated method stub
+		// TODO Dated 27th Jan 2016
 		return false;
 	}
 
