@@ -16,7 +16,7 @@ import com.lalit.graph.operations.DirectedGraph;
  * @param edgeName
  * @return
  */
-public class DirectedGraphOperationsImplViaMapStructure implements DirectedGraph {
+public class DirectedGraphVersion1Impl implements DirectedGraph {
 
 	Map<String, Set<Edge>> graphMap = new TreeMap<>();
 
@@ -132,7 +132,7 @@ public class DirectedGraphOperationsImplViaMapStructure implements DirectedGraph
 	}
 
 	public static void main(String... s) {
-		DirectedGraphOperationsImplViaMapStructure graphOperation = new DirectedGraphOperationsImplViaMapStructure();
+		DirectedGraphVersion1Impl graphOperation = new DirectedGraphVersion1Impl();
 		graphOperation.insert("A", "B", "");
 		graphOperation.insert("B", "C", "");
 		graphOperation.insert("C", "A", "");
