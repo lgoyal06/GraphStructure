@@ -1,8 +1,8 @@
 package com.lalit.undirected.graph.operations;
 
-import com.lalit.graph.operations.GraphCRUDOperations;
+import com.lalit.graph.operations.UndirectedGraph;
 
-public class UndirectedGraphOperationsImpl implements GraphCRUDOperations {
+public class UndirectedGraphOperationsImpl implements UndirectedGraph {
 
 	@Override
 	public boolean insert(String fromNodeName, String toNodeName, String edgeName) {

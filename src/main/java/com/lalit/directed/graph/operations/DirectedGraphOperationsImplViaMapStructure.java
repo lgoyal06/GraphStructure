@@ -7,7 +7,7 @@ import java.util.Set;
 import java.util.TreeMap;
 
 import com.lalit.graph.elements.Edge;
-import com.lalit.graph.operations.GraphCRUDOperations;
+import com.lalit.graph.operations.DirectedGraph;
 
 /**
  * @author lalit goyal
@@ -16,7 +16,7 @@ import com.lalit.graph.operations.GraphCRUDOperations;
  * @param edgeName
  * @return
  */
-public class DirectedGraphOperationsImplViaMapStructure implements GraphCRUDOperations {
+public class DirectedGraphOperationsImplViaMapStructure implements DirectedGraph {
 
 	Map<String, Set<Edge>> graphMap = new TreeMap<>();
 
