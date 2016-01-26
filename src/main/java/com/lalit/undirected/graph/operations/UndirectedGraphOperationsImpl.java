@@ -23,18 +23,6 @@ public class UndirectedGraphOperationsImpl implements GraphCRUDOperations {
 	}
 
 	@Override
-	public boolean updateNodeInfo() {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	@Override
-	public boolean updateEdgeInfo() {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	@Override
 	public Object insertNode(String fromNodeName) {
 		// TODO Auto-generated method stub
 		return null;
@@ -48,6 +36,36 @@ public class UndirectedGraphOperationsImpl implements GraphCRUDOperations {
 
 	@Override
 	public boolean insertUndirectedEdge(String nodeA, String nodeB, String edgeName) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean updateNodeInfo(String nodeName) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean makeUndirected(String edgeName) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean reverseDirection(String edgeName) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean setDirectionFrom(String edgeName, String newFromNodeName) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean setDirectionTo(String edgeName, String newToNodeName) {
 		// TODO Auto-generated method stub
 		return false;
 	}

@@ -2,25 +2,37 @@ package com.lalit.graph.elements.version2;
 
 public class Edge {
 
-	private String nodeA;
-	private String nodeB;
+	private String fromNode;
+	private String toNode;
 	private String edgeInformation;
 	private boolean isDirectedEdge;
 
-	public String getNodeA() {
-		return nodeA;
+	public Edge(String edgeInformation) {
+		this.edgeInformation = edgeInformation;
 	}
 
-	public void setNodeA(String nodeA) {
-		this.nodeA = nodeA;
+	public boolean equals(Object obj) {
+		return this.getEdgeInformation().equalsIgnoreCase(((Edge) obj).getEdgeInformation());
 	}
 
-	public String getNodeB() {
-		return nodeB;
+	public int hashcode() {
+		return this.getEdgeInformation().hashCode();
 	}
 
-	public void setNodeB(String nodeB) {
-		this.nodeB = nodeB;
+	public String getFromNode() {
+		return fromNode;
+	}
+
+	public void setFromNode(String fromNode) {
+		this.fromNode = fromNode;
+	}
+
+	public String getToNode() {
+		return toNode;
+	}
+
+	public void setToNode(String toNode) {
+		this.toNode = toNode;
 	}
 
 	public boolean isDirectedEdge() {

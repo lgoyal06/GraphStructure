@@ -148,4 +148,34 @@ public class DirectedGraphOperationsImplViaMapStructure implements GraphCRUDOper
 			}
 		}
 	}
+
+	@Override
+	public boolean updateNodeInfo(String nodeName) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean makeUndirected(String edgeName) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean reverseDirection(String edgeName) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean setDirectionFrom(String edgeName, String newFromNodeName) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean setDirectionTo(String edgeName, String newToNodeName) {
+		// TODO Auto-generated method stub
+		return false;
+	}
 }
