@@ -2,8 +2,6 @@ package com.lalit.graph.operations;
 
 public interface DirectedGraph {
 
-	boolean insert(String fromNodeName, String toNodeName, String edgeName);
-
 	Object insertNode(String fromNodeName);
 
 	boolean insertDirectedEdge(String fromNodeName, String toNodeName, String edgeName);
@@ -14,7 +12,7 @@ public interface DirectedGraph {
 
 	boolean deleteEdge(String edgeName);
 
-	boolean updateNodeInfo(String nodeName);
+	boolean updateNodeInfo(String nodeNameId, String nodeInfo);
 
 	boolean makeUndirected(String edgeName);
 
@@ -23,5 +21,7 @@ public interface DirectedGraph {
 	boolean setDirectionFrom(String edgeName, String newFromNodeName);
 
 	boolean setDirectionTo(String edgeName, String newToNodeName);
+
+	boolean updateEdgeInformation(String edgeName, String edgeInformation);
 
 }

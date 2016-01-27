@@ -8,14 +8,14 @@ package com.lalit.graph.elements.version2;
  */
 public class Node {
 
-	private String nodeName;
+	private String nodeNameInfo;
 
-	public String getNodeName() {
-		return nodeName;
+	public String getNodeNameInfo() {
+		return nodeNameInfo;
 	}
 
-	public void setNodeName(String nodeName) {
-		this.nodeName = nodeName;
+	public void setNodeNameInfo(String nodeNameInfo) {
+		this.nodeNameInfo = nodeNameInfo;
 	}
 
 }

@@ -150,12 +150,6 @@ public class DirectedGraphVersion1Impl implements DirectedGraph {
 	}
 
 	@Override
-	public boolean updateNodeInfo(String nodeName) {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	@Override
 	public boolean makeUndirected(String edgeName) {
 		// TODO Auto-generated method stub
 		return false;
@@ -175,6 +169,18 @@ public class DirectedGraphVersion1Impl implements DirectedGraph {
 
 	@Override
 	public boolean setDirectionTo(String edgeName, String newToNodeName) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean updateEdgeInformation(String edgeName, String edgeInformation) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean updateNodeInfo(String nodeNameId, String nodeInfo) {
 		// TODO Auto-generated method stub
 		return false;
 	}
