@@ -24,13 +24,14 @@ import com.lalit.graph.utility.ValueComparator;
  * 
  *         String[1] -> Distance/Weight from connected node
  * 
- *         TODO : Check for the Time complexity of this algorithm
- * 
  *         TODO: Change the Class Name to make it more easy to understand and
  *         relate with task it is performing
  * 
+ *         TODO: See can DFS Graph traversal logic on 303 Page of Algorithm
+ *         Design
+ * 
  */
-public final class ShortestPathFinderAlgorithm {
+public final class GraphPathFinderAlgorithm {
 
 	public Map<String, Integer> findShortestPathAndDistanceBtwTwoNodesInDirectedGraph(Map<String, Node> graphMap,
 			String startingNode, String destinationNode) {
