@@ -2,15 +2,15 @@ package com.lalit.graph.directed;
 
 import org.junit.Ignore;
 
-import com.lalit.directed.graph.operations.DirectedGraphImpl;
+import com.lalit.graph.operations.GraphImpl;
 
-public class DirectedGraphImplUnitTest {
+public class GraphImplUnitTest {
 
 	@Ignore
 	public void givenEmptyGraphWhenInsertNodePrformedThenExpectGraphUpdatedWithNode() {
 
 		// TODO: Fix it
-		DirectedGraphImpl graph = new DirectedGraphImpl();
+		GraphImpl graph = new GraphImpl();
 		graph.insertNode("A");
 		graph.insertNode("B");
 		graph.insertNode("E");
@@ -31,7 +31,7 @@ public class DirectedGraphImplUnitTest {
 	}
 
 	public static void main(String... s) {
-		DirectedGraphImpl graph = new DirectedGraphImpl();
+		GraphImpl graph = new GraphImpl();
 		graph.insertNode("A");
 		graph.insertNode("B");
 		graph.insertNode("E");

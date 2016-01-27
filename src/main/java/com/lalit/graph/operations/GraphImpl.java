@@ -1,4 +1,4 @@
-package com.lalit.directed.graph.operations;
+package com.lalit.graph.operations;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -9,9 +9,6 @@ import java.util.TreeMap;
 
 import com.lalit.graph.elements.version2.Edge;
 import com.lalit.graph.elements.version2.Node;
-import com.lalit.graph.operations.DirectedGraph;
-import com.lalit.graph.operations.Graph;
-import com.lalit.graph.operations.GraphIterator;
 
 /**
  * @author lalit goyal
@@ -21,7 +18,7 @@ import com.lalit.graph.operations.GraphIterator;
  * @return
  * 
  */
-public class DirectedGraphImpl implements DirectedGraph, Graph, GraphIterator {
+public class GraphImpl implements Graph, DirectedGraph, UndirectedGraph, GraphIterator {
 
 	private List<Edge> edgeList = new ArrayList<Edge>();
 	private Map<String, Node> nodeMap = new TreeMap<String, Node>();
@@ -62,6 +59,22 @@ public class DirectedGraphImpl implements DirectedGraph, Graph, GraphIterator {
 	 * 
 	 * Assumption : edgeName will be unique i.e. no two EdgeName can be same
 	 */
+	@Override
+	public boolean insertUndirectedEdge(String nodeA, String nodeB, String edgeName) {
+		// Create an Edge
+		// TODO check in case edge already exists
+		Edge edge = new Edge(edgeName);
+		edge.setFromNode(nodeA);
+		edge.setToNode(nodeB);
+		edge.setDirectedEdge(false);
+		edgeList.add(edge);
+		// Best Case - 2*O(log(n)) - Both nodes already exists
+		// Worst Case - 4*O(log(n)) - Both Nodes are new
+		insertNode(nodeA);
+		insertNode(nodeB);
+		return true;
+	}
+
 	@Override
 	public boolean deleteNode(String nodeToBeDeleted) {
 		// O(log(n)) time complexity
@@ -180,68 +193,74 @@ public class DirectedGraphImpl implements DirectedGraph, Graph, GraphIterator {
 	}
 
 	@Override
+	public Iterator<? extends Edge> undirectedEdges() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
 	public Edge destination(String edgeName) {
-		// TODO Complete By 28th Jan 2016 along with Time Complexity Study
+		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
 	public Edge origin(String edgeName) {
-		// TODO Complete By 28th Jan 2016 along with Time Complexity Study
+		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public boolean isDirected(String edgeName) {
-		// TODO Complete By 28th Jan 2016 along with Time Complexity Study
-		return false;
-	}
-
-	@Override
 	public Iterator<? extends Edge> directedEdges() {
-		// TODO Complete By 28th Jan 2016 along with Time Complexity Study
+		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
 	public int inDegree(String nodeNameId) {
-		// TODO Complete By 28th Jan 2016 along with Time Complexity Study
+		// TODO Auto-generated method stub
 		return 0;
 	}
 
 	@Override
 	public int outDegree(String nodeNameId) {
-		// TODO Complete By 28th Jan 2016 along with Time Complexity Study
+		// TODO Auto-generated method stub
 		return 0;
 	}
 
 	@Override
 	public Iterator<? extends Edge> inIncidentEdges(String nodeNameId) {
-		// TODO Complete By 28th Jan 2016 along with Time Complexity Study
+		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
 	public Iterator<? extends Edge> outIncidentEdges(String nodeNameId) {
-		// TODO Complete By 28th Jan 2016 along with Time Complexity Study
+		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
 	public Iterator<? extends Map<String, ? extends Node>> inAdjacentNodes(String nodeNameId) {
-		// TODO Complete By 28th Jan 2016 along with Time Complexity Study
+		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
 	public Iterator<? extends Map<String, ? extends Node>> outAdjacentNodes(String nodeNameId) {
-		// TODO Complete By 28th Jan 2016 along with Time Complexity Study
+		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
+	public boolean isDirected(String edgeName) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
 	public boolean isUndirected(String edgeName) {
-		// TODO Complete By 28th Jan 2016 along with Time Complexity Study
+		// TODO Auto-generated method stub
 		return false;
 	}
 }
