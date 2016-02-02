@@ -1,21 +1,19 @@
 package com.lalit.graph.operations;
 
 import java.util.Iterator;
-import java.util.Map;
+import java.util.Map.Entry;
 
 import com.lalit.graph.elements.version2.Edge;
 import com.lalit.graph.elements.version2.Node;
 
 public interface GraphIterator {
 
-	Iterator<? extends Edge> directedEdges();
+	Iterator<? extends Edge> incidentEdges(String nodeName);
 
-	Iterator<? extends Edge> inIncidentEdges(String nodeNameId);
+	Iterator<Entry<String, Node>> adjacentNodes(String nodeName);
 
-	Iterator<? extends Edge> outIncidentEdges(String nodeNameId);
+	Iterator<Entry<String, Node>> nodes();
 
-	Iterator<? extends Map<String, ? extends Node>> inAdjacentNodes(String nodeNameId);
-
-	Iterator<? extends Map<String, ? extends Node>> outAdjacentNodes(String nodeNameId);
+	Iterator<? extends Edge> edges();
 
 }

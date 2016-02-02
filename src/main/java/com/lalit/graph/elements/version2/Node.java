@@ -3,8 +3,7 @@ package com.lalit.graph.elements.version2;
 /**
  * @author lalit goyal
  * 
- *         This is like the Facebook Contact or individual user each of these
- *         can have the contact, personal information section
+ *         This is like the Face-book individual Contact complete information
  */
 public class Node {
 

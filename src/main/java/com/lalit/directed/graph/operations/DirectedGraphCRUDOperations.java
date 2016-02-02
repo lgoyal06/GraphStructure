@@ -1,8 +1,6 @@
-package com.lalit.graph.operations;
+package com.lalit.directed.graph.operations;
 
-import com.lalit.graph.elements.version2.Edge;
-
-public interface DirectedGraph extends GraphIterator {
+public interface DirectedGraphCRUDOperations {
 
 	boolean insertDirectedEdge(String fromNodeName, String toNodeName, String edgeName);
 
@@ -14,12 +12,12 @@ public interface DirectedGraph extends GraphIterator {
 
 	boolean setDirectionTo(String edgeName, String newToNodeName);
 
-	Edge destination(String edgeName);
+	String destination(String edgeName);
 
-	Edge origin(String edgeName);
+	String origin(String edgeName);
 
-	int inDegree(String nodeNameId);
+	int inDegree(String nodeName);
 
-	int outDegree(String nodeNameId);
+	int outDegree(String nodeName);
 
-	}
+}

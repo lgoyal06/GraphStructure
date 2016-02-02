@@ -1,17 +1,17 @@
 package com.lalit.directed.graph.operations;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.ListIterator;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.TreeMap;
 
 import com.lalit.graph.elements.version2.Edge;
 import com.lalit.graph.elements.version2.Node;
-import com.lalit.graph.operations.DirectedGraph;
-import com.lalit.graph.operations.Graph;
-import com.lalit.graph.operations.GraphIterator;
+import com.lalit.graph.operations.GraphImpl;
 
 /**
  * @author lalit goyal
@@ -21,7 +21,7 @@ import com.lalit.graph.operations.GraphIterator;
  * @return
  * 
  */
-public class DirectedGraphImpl implements DirectedGraph, Graph, GraphIterator {
+public class DirectedGraphImpl extends GraphImpl implements DirectedGraphCRUDOperations, DirectedGraphIterator {
 
 	private List<Edge> edgeList = new ArrayList<Edge>();
 	private Map<String, Node> nodeMap = new TreeMap<String, Node>();
@@ -66,7 +66,9 @@ public class DirectedGraphImpl implements DirectedGraph, Graph, GraphIterator {
 	public boolean deleteNode(String nodeToBeDeleted) {
 		// O(log(n)) time complexity
 		nodeMap.remove(nodeToBeDeleted);
-		// O(e) - e is the total number of the edges
+		// Worst Case - O(e) - e total number of the edges for all nodes
+		// Best Case - O(1)
+		// Average Case - O(e/2)
 		ListIterator<Edge> listIterator = edgeList.listIterator();
 		while (listIterator.hasNext()) {
 			Edge e = listIterator.next();
@@ -79,15 +81,16 @@ public class DirectedGraphImpl implements DirectedGraph, Graph, GraphIterator {
 
 	@Override
 	public boolean deleteEdge(String edgeName) {
+		// Does not seems be the best solution see it and fix it
 		// Time Complexity Worst - O(n) - remove the edge from the Graph
 		// Average Complexity - O(n/2)
 		return edgeList.remove(new Edge(edgeName));
 	}
 
 	@Override
-	public boolean updateNodeInfo(String nodeNameId, String nodeInfo) {
+	public boolean updateNodeInfo(String nodeName, String nodeInfo) {
 		// Time Complexity :: O(log(n))
-		Node node = nodeMap.get(nodeNameId);
+		Node node = nodeMap.get(nodeName);
 		if (node != null) {
 			node.setNodeNameInfo(nodeInfo);
 			return true;
@@ -140,10 +143,10 @@ public class DirectedGraphImpl implements DirectedGraph, Graph, GraphIterator {
 		while (listIterator.hasNext()) {
 			Edge e = listIterator.next();
 			if (e.getEdgeInformation().equalsIgnoreCase(edgeName)) {
-				e.setFromNode(newFromNodeName);
 				// Best Case - O(log(n)) - Both nodes already exists
 				// Worst Case - 2*O(log(n)) - Both Nodes are new
 				insertNode(newFromNodeName);
+				e.setFromNode(newFromNodeName);
 				return true;
 			}
 		}
@@ -152,14 +155,17 @@ public class DirectedGraphImpl implements DirectedGraph, Graph, GraphIterator {
 
 	@Override
 	public boolean setDirectionTo(String edgeName, String newToNodeName) {
+		// Worst Case - O(e) - e total number of the edges for all nodes
+		// Best Case - O(1)
+		// Average Case - O(e/2)
 		ListIterator<Edge> listIterator = edgeList.listIterator();
 		while (listIterator.hasNext()) {
 			Edge e = listIterator.next();
 			if (e.getEdgeInformation().equalsIgnoreCase(edgeName)) {
-				e.setToNode(newToNodeName);
 				// Best Case - O(log(n)) - Both nodes already exists
 				// Worst Case - 2*O(log(n)) - Both Nodes are new
 				insertNode(newToNodeName);
+				e.setToNode(newToNodeName);
 				return true;
 			}
 		}
@@ -168,6 +174,9 @@ public class DirectedGraphImpl implements DirectedGraph, Graph, GraphIterator {
 
 	@Override
 	public boolean updateEdgeInformation(String edgeName, String edgeInformation) {
+		// Worst Case - O(e) - e total number of the edges for all nodes
+		// Best Case - O(1)
+		// Average Case - O(e/2)
 		ListIterator<Edge> listIterator = edgeList.listIterator();
 		while (listIterator.hasNext()) {
 			Edge e = listIterator.next();
@@ -180,68 +189,190 @@ public class DirectedGraphImpl implements DirectedGraph, Graph, GraphIterator {
 	}
 
 	@Override
-	public Edge destination(String edgeName) {
-		// TODO Complete By 28th Jan 2016 along with Time Complexity Study
+	public String destination(String edgeName) {
+		// Worst Case - O(e) - e total number of the edges for all nodes
+		// Best Case - O(1)
+		// Average Case - O(e/2)
+		ListIterator<Edge> listIterator = edgeList.listIterator();
+		while (listIterator.hasNext()) {
+			Edge e = listIterator.next();
+			if (e.getEdgeInformation().equalsIgnoreCase(edgeName) && e.isDirectedEdge()) {
+				return e.getToNode();
+			}
+		}
 		return null;
 	}
 
 	@Override
-	public Edge origin(String edgeName) {
-		// TODO Complete By 28th Jan 2016 along with Time Complexity Study
+	public String origin(String edgeName) {
+		// Worst Case - O(e) - e total number of the edges for all nodes
+		// Best Case - O(1)
+		// Average Case - O(e/2)
+		ListIterator<Edge> listIterator = edgeList.listIterator();
+		while (listIterator.hasNext()) {
+			Edge e = listIterator.next();
+			if (e.getEdgeInformation().equalsIgnoreCase(edgeName) && e.isDirectedEdge()) {
+				return e.getFromNode();
+			}
+		}
 		return null;
 	}
 
 	@Override
 	public boolean isDirected(String edgeName) {
-		// TODO Complete By 28th Jan 2016 along with Time Complexity Study
+		// Worst Case - O(e) - e total number of the edges for all nodes
+		// Best Case - O(1)
+		// Average Case - O(e/2)
+		Iterator<Edge> iterator = edgeList.iterator();
+		while (iterator.hasNext()) {
+			Edge e = iterator.next();
+			if (e.getEdgeInformation().equalsIgnoreCase(edgeName)) {
+				return e.isDirectedEdge();
+			}
+		}
 		return false;
 	}
 
 	@Override
 	public Iterator<? extends Edge> directedEdges() {
-		// TODO Complete By 28th Jan 2016 along with Time Complexity Study
-		return null;
+		// Worst Case - O(e) - e total number of the edges for all nodes
+		// Best Case - O(1)
+		// Average Case - O(e/2)
+		List<Edge> directedEdges = new ArrayList<>();
+		ListIterator<Edge> listIterator = edgeList.listIterator();
+		while (listIterator.hasNext()) {
+			Edge e = listIterator.next();
+			if (e.isDirectedEdge()) {
+				// Constant time to add element to array at end :: O(1)
+				directedEdges.add(e);
+			}
+		}
+		return directedEdges.iterator();
 	}
 
 	@Override
-	public int inDegree(String nodeNameId) {
-		// TODO Complete By 28th Jan 2016 along with Time Complexity Study
-		return 0;
+	public int inDegree(String nodeName) {
+		// Worst Case - O(e) - e total number of the edges for all nodes
+		// Best Case - O(1)
+		// Average Case - O(e/2)
+		int counter = 0;
+		Iterator<Edge> iterator = edgeList.iterator();
+		while (iterator.hasNext()) {
+			Edge e = iterator.next();
+			if (e.getToNode().equalsIgnoreCase(nodeName) && e.isDirectedEdge()) {
+				++counter;
+			}
+		}
+		return counter;
 	}
 
 	@Override
-	public int outDegree(String nodeNameId) {
-		// TODO Complete By 28th Jan 2016 along with Time Complexity Study
-		return 0;
+	public int outDegree(String nodeName) {
+		// Worst Case - O(e) - e total number of the edges for all nodes
+		// Best Case - O(1)
+		// Average Case - O(e/2)
+		int counter = 0;
+		Iterator<Edge> iterator = edgeList.iterator();
+		while (iterator.hasNext()) {
+			Edge e = iterator.next();
+			if (e.getFromNode().equalsIgnoreCase(nodeName) && e.isDirectedEdge()) {
+				++counter;
+			}
+		}
+		return counter;
 	}
 
 	@Override
-	public Iterator<? extends Edge> inIncidentEdges(String nodeNameId) {
-		// TODO Complete By 28th Jan 2016 along with Time Complexity Study
-		return null;
+	public Iterator<? extends Edge> inIncidentEdges(String nodeName) {
+		// Worst Case - O(e) - e total number of the edges for all nodes
+		// Best Case - O(1)
+		// Average Case - O(e/2)
+		List<Edge> inIncidentEdges = new ArrayList<>();
+		Iterator<Edge> iterator = edgeList.iterator();
+		while (iterator.hasNext()) {
+			Edge e = iterator.next();
+			if (e.getToNode().equalsIgnoreCase(nodeName) && e.isDirectedEdge()) {
+				// Constant time to add element to array at end :: O(1)
+				inIncidentEdges.add(e);
+			}
+		}
+		return inIncidentEdges.iterator();
 	}
 
 	@Override
-	public Iterator<? extends Edge> outIncidentEdges(String nodeNameId) {
-		// TODO Complete By 28th Jan 2016 along with Time Complexity Study
-		return null;
+	public Iterator<? extends Edge> outIncidentEdges(String nodeName) {
+		List<Edge> outIncidentEdges = new ArrayList<>();
+		Iterator<Edge> iterator = edgeList.iterator();
+		// Worst Case - O(e) - e total number of the edges for all nodes
+		// Best Case - O(1)
+		// Average Case - O(e/2)
+		while (iterator.hasNext()) {
+			Edge e = iterator.next();
+			if (e.getFromNode().equalsIgnoreCase(nodeName) && e.isDirectedEdge()) {
+				// Constant time to add element to array at end :: O(1)
+				outIncidentEdges.add(e);
+			}
+		}
+		return outIncidentEdges.iterator();
 	}
 
 	@Override
-	public Iterator<? extends Map<String, ? extends Node>> inAdjacentNodes(String nodeNameId) {
-		// TODO Complete By 28th Jan 2016 along with Time Complexity Study
-		return null;
+	public Iterator<Entry<String, Node>> inAdjacentNodes(String nodeName) {
+		Iterator<Edge> iterator = edgeList.iterator();
+		Map<String, Node> inAdjacentNodesMap = new HashMap<>();
+		// Worst Case - O(e) - e total number of the edges for all nodes
+		// Best Case - O(1)
+		// Average Case - O(e/2)
+		while (iterator.hasNext()) {
+			Edge e = iterator.next();
+			if (e.getToNode().equalsIgnoreCase(nodeName) && e.isDirectedEdge()) {
+				// Constant-time performance for the basic operations (get and
+				// put), assuming the hash function disperses the elements
+				// properly among the buckets.
+				inAdjacentNodesMap.put(nodeName, nodeMap.get(nodeName));
+			}
+		}
+		return inAdjacentNodesMap.entrySet().iterator();
 	}
 
 	@Override
-	public Iterator<? extends Map<String, ? extends Node>> outAdjacentNodes(String nodeNameId) {
-		// TODO Complete By 28th Jan 2016 along with Time Complexity Study
-		return null;
+	public Iterator<Entry<String, Node>> outAdjacentNodes(String nodeName) {
+		// Constant time in object creation
+		Map<String, Node> outAdjacentNodesMap = new HashMap<>();
+		Iterator<Edge> iterator = edgeList.iterator();
+		// Worst Case - O(e) - e total number of the edges for all nodes
+		// Best Case - O(1)
+		// Average Case - O(e/2)
+		while (iterator.hasNext()) {
+			Edge e = iterator.next();
+			if (e.getToNode().equalsIgnoreCase(nodeName) && e.isDirectedEdge()) {
+				// Constant-time performance for the basic operations (get and
+				// put), assuming the hash function disperses the elements
+				// properly among the buckets.
+				outAdjacentNodesMap.put(nodeName, nodeMap.get(nodeName));
+			}
+		}
+		return outAdjacentNodesMap.entrySet().iterator();
 	}
 
 	@Override
 	public boolean isUndirected(String edgeName) {
-		// TODO Complete By 28th Jan 2016 along with Time Complexity Study
+		// Worst Case - O(e) - e total number of the edges for all nodes
+		// Best Case - O(1)
+		// Average Case - O(e/2)
+		Iterator<Edge> iterator = edgeList.iterator();
+		while (iterator.hasNext()) {
+			Edge e = iterator.next();
+			if (e.getEdgeInformation().equalsIgnoreCase(edgeName)) {
+				return e.isDirectedEdge();
+			}
+		}
 		return false;
+	}
+
+	@Override
+	public Iterator<? extends Edge> undirectedEdges() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }
