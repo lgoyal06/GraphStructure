@@ -1,10 +1,20 @@
 package com.lalit.graph.operations;
 
+/**
+ * @author lalit goyal
+ * 
+ *         This interface contains generic methods which can be used by
+ * 
+ *         1.Directed
+ * 
+ *         2.Undirected
+ * 
+ *         3.Hybrid Graph
+ *
+ */
 public interface GraphCRUDOperations {
 
 	Object insertNode(String nodeName);
-
-	boolean insertEdge(String nodeAName, String nodeBName, String edgeName);
 
 	boolean deleteNode(String nodeToBeDeleted);
 
@@ -21,8 +31,6 @@ public interface GraphCRUDOperations {
 	int numNodes();
 
 	int numEdges();
-
-	int degree(String nodeNameId);
 
 	boolean areAdjacent(String nodeA, String nodeB);
 

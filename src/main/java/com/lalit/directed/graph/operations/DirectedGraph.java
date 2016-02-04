@@ -7,7 +7,6 @@ import java.util.List;
 import java.util.ListIterator;
 import java.util.Map;
 import java.util.Map.Entry;
-import java.util.TreeMap;
 
 import com.lalit.graph.elements.version2.Edge;
 import com.lalit.graph.elements.version2.Node;
@@ -21,22 +20,7 @@ import com.lalit.graph.operations.GraphImpl;
  * @return
  * 
  */
-public class DirectedGraphImpl extends GraphImpl implements DirectedGraphCRUDOperations, DirectedGraphIterator {
-
-	private List<Edge> edgeList = new ArrayList<Edge>();
-	private Map<String, Node> nodeMap = new TreeMap<String, Node>();
-
-	public Node insertNode(String nodeName) {
-		// Time Complexity O(log(n)) Search an element in TreeMap
-		Node node = nodeMap.get(nodeName);
-		if (node == null) {
-			node = new Node();
-			node.setNodeNameInfo(nodeName);
-			// O(log(n)) - add operation in TreeMap
-			return nodeMap.put(nodeName, node);
-		}
-		return node;
-	}
+public class DirectedGraph extends GraphImpl implements DirectedGraphCRUDOperations, DirectedGraphIteratorOperation {
 
 	@Override
 	public boolean insertDirectedEdge(String fromNodeName, String toNodeName, String edgeName) {
@@ -51,51 +35,6 @@ public class DirectedGraphImpl extends GraphImpl implements DirectedGraphCRUDOpe
 		insertNode(fromNodeName);
 		insertNode(toNodeName);
 		return true;
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see com.lalit.graph.operations.GraphCRUDOperations#
-	 * insertUndirectedEdgeOperation(java.lang.String, java.lang.String,
-	 * java.lang.String)
-	 * 
-	 * Assumption : edgeName will be unique i.e. no two EdgeName can be same
-	 */
-	@Override
-	public boolean deleteNode(String nodeToBeDeleted) {
-		// O(log(n)) time complexity
-		nodeMap.remove(nodeToBeDeleted);
-		// Worst Case - O(e) - e total number of the edges for all nodes
-		// Best Case - O(1)
-		// Average Case - O(e/2)
-		ListIterator<Edge> listIterator = edgeList.listIterator();
-		while (listIterator.hasNext()) {
-			Edge e = listIterator.next();
-			if (e.getFromNode().equalsIgnoreCase(nodeToBeDeleted) || e.getToNode().equalsIgnoreCase(nodeToBeDeleted)) {
-				listIterator.remove();
-			}
-		}
-		return true;
-	}
-
-	@Override
-	public boolean deleteEdge(String edgeName) {
-		// Does not seems be the best solution see it and fix it
-		// Time Complexity Worst - O(n) - remove the edge from the Graph
-		// Average Complexity - O(n/2)
-		return edgeList.remove(new Edge(edgeName));
-	}
-
-	@Override
-	public boolean updateNodeInfo(String nodeName, String nodeInfo) {
-		// Time Complexity :: O(log(n))
-		Node node = nodeMap.get(nodeName);
-		if (node != null) {
-			node.setNodeNameInfo(nodeInfo);
-			return true;
-		}
-		return false;
 	}
 
 	@Override
@@ -173,22 +112,6 @@ public class DirectedGraphImpl extends GraphImpl implements DirectedGraphCRUDOpe
 	}
 
 	@Override
-	public boolean updateEdgeInformation(String edgeName, String edgeInformation) {
-		// Worst Case - O(e) - e total number of the edges for all nodes
-		// Best Case - O(1)
-		// Average Case - O(e/2)
-		ListIterator<Edge> listIterator = edgeList.listIterator();
-		while (listIterator.hasNext()) {
-			Edge e = listIterator.next();
-			if (e.getEdgeInformation().equalsIgnoreCase(edgeName)) {
-				e.setEdgeInformation(edgeInformation);
-				return true;
-			}
-		}
-		return false;
-	}
-
-	@Override
 	public String destination(String edgeName) {
 		// Worst Case - O(e) - e total number of the edges for all nodes
 		// Best Case - O(1)
@@ -216,21 +139,6 @@ public class DirectedGraphImpl extends GraphImpl implements DirectedGraphCRUDOpe
 			}
 		}
 		return null;
-	}
-
-	@Override
-	public boolean isDirected(String edgeName) {
-		// Worst Case - O(e) - e total number of the edges for all nodes
-		// Best Case - O(1)
-		// Average Case - O(e/2)
-		Iterator<Edge> iterator = edgeList.iterator();
-		while (iterator.hasNext()) {
-			Edge e = iterator.next();
-			if (e.getEdgeInformation().equalsIgnoreCase(edgeName)) {
-				return e.isDirectedEdge();
-			}
-		}
-		return false;
 	}
 
 	@Override
@@ -355,24 +263,4 @@ public class DirectedGraphImpl extends GraphImpl implements DirectedGraphCRUDOpe
 		return outAdjacentNodesMap.entrySet().iterator();
 	}
 
-	@Override
-	public boolean isUndirected(String edgeName) {
-		// Worst Case - O(e) - e total number of the edges for all nodes
-		// Best Case - O(1)
-		// Average Case - O(e/2)
-		Iterator<Edge> iterator = edgeList.iterator();
-		while (iterator.hasNext()) {
-			Edge e = iterator.next();
-			if (e.getEdgeInformation().equalsIgnoreCase(edgeName)) {
-				return e.isDirectedEdge();
-			}
-		}
-		return false;
-	}
-
-	@Override
-	public Iterator<? extends Edge> undirectedEdges() {
-		// TODO Auto-generated method stub
-		return null;
-	}
 }

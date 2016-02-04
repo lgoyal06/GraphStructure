@@ -6,9 +6,7 @@ import java.util.Map.Entry;
 import com.lalit.graph.elements.version2.Edge;
 import com.lalit.graph.elements.version2.Node;
 
-public interface GraphIterator {
-
-	Iterator<? extends Edge> incidentEdges(String nodeName);
+public interface GraphIteratorOperations {
 
 	Iterator<Entry<String, Node>> adjacentNodes(String nodeName);
 

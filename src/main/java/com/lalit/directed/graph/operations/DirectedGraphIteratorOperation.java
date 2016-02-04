@@ -6,7 +6,7 @@ import java.util.Map.Entry;
 import com.lalit.graph.elements.version2.Edge;
 import com.lalit.graph.elements.version2.Node;
 
-public interface DirectedGraphIterator {
+public interface DirectedGraphIteratorOperation {
 
 	Iterator<? extends Edge> directedEdges();
 
@@ -17,7 +17,5 @@ public interface DirectedGraphIterator {
 	Iterator<Entry<String, Node>> inAdjacentNodes(String nodeName);
 
 	Iterator<Entry<String, Node>> outAdjacentNodes(String nodeName);
-
-	Iterator<? extends Edge> undirectedEdges();
 
 }

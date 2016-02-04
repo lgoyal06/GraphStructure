@@ -19,11 +19,12 @@ import com.lalit.graph.elements.version2.Node;
  * @return
  * 
  */
-public class GraphImpl implements GraphCRUDOperations, GraphIterator {
+public class GraphImpl implements GraphCRUDOperations, GraphIteratorOperations {
 
-	private List<Edge> edgeList = new ArrayList<Edge>();
-	private Map<String, Node> nodeMap = new TreeMap<String, Node>();
+	protected List<Edge> edgeList = new ArrayList<Edge>();
+	protected Map<String, Node> nodeMap = new TreeMap<String, Node>();
 
+	@Override
 	public Node insertNode(String nodeName) {
 		// Time Complexity O(log(n)) Search an element in TreeMap
 		Node node = nodeMap.get(nodeName);
@@ -128,12 +129,6 @@ public class GraphImpl implements GraphCRUDOperations, GraphIterator {
 	}
 
 	@Override
-	public Iterator<? extends Edge> incidentEdges(String nodeName) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
 	public Iterator<Entry<String, Node>> adjacentNodes(String nodeName) {
 		// TODO Auto-generated method stub
 		return null;
@@ -152,12 +147,6 @@ public class GraphImpl implements GraphCRUDOperations, GraphIterator {
 	}
 
 	@Override
-	public boolean insertEdge(String nodeAName, String nodeBName, String edgeName) {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	@Override
 	public int numNodes() {
 		// TODO Auto-generated method stub
 		return 0;
@@ -165,12 +154,6 @@ public class GraphImpl implements GraphCRUDOperations, GraphIterator {
 
 	@Override
 	public int numEdges() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
-	public int degree(String nodeNameId) {
 		// TODO Auto-generated method stub
 		return 0;
 	}
