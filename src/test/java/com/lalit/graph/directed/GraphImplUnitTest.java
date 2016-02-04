@@ -3,7 +3,6 @@ package com.lalit.graph.directed;
 import org.junit.Ignore;
 
 import com.lalit.directed.graph.operations.DirectedGraph;
-import com.lalit.undirected.Graph.operations.UndirectedGraph;
 
 public class GraphImplUnitTest {
 
@@ -12,7 +11,6 @@ public class GraphImplUnitTest {
 
 		// TODO: Fix it by 29th Jan 2016
 		DirectedGraph graph = new DirectedGraph();
-		UndirectedGraph graph1 = new UndirectedGraph();
 		graph.insertNode("A");
 		graph.insertNode("B");
 		graph.insertNode("E");

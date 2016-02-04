@@ -287,5 +287,4 @@ public class HybridGraph extends GraphImpl implements DirectedGraphCRUDOperation
 		// TODO Auto-generated method stub
 		return 0;
 	}
-
 }

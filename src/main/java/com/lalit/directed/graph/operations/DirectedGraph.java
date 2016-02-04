@@ -263,4 +263,19 @@ public class DirectedGraph extends GraphImpl implements DirectedGraphCRUDOperati
 		return outAdjacentNodesMap.entrySet().iterator();
 	}
 
+	@Override
+	public boolean isUndirected(String edgeName) {
+		// Worst Case - O(e) - e total number of the edges for all nodes
+		// Best Case - O(1)
+		// Average Case - O(e/2)
+		Iterator<Edge> iterator = edgeList.iterator();
+		while (iterator.hasNext()) {
+			Edge e = iterator.next();
+			if (e.getEdgeInformation().equalsIgnoreCase(edgeName)) {
+				return e.isDirectedEdge();
+			}
+		}
+		return false;
+	}
+
 }
