@@ -13,7 +13,8 @@ import com.lalit.graph.operations.GraphImpl;
  * @return
  * 
  */
-public class UndirectedGraph extends GraphImpl implements UndirectedGraphCRUDOperations, UndirectedGraphIterator {
+public class UndirectedGraph extends GraphImpl
+		implements UndirectedGraphCRUDOperations, UndirectedGraphIteratorOperation {
 
 	@Override
 	public Iterator<? extends Edge> incidentEdges(String nodeName) {
