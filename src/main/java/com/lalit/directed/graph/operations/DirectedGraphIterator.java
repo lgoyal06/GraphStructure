@@ -18,6 +18,4 @@ public interface DirectedGraphIterator {
 
 	Iterator<Entry<String, Node>> outAdjacentNodes(String nodeName);
 
-	Iterator<? extends Edge> undirectedEdges();
-
 }

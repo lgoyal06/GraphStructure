@@ -1,15 +1,12 @@
-package com.lalit.graph.operations;
+package com.lalit.undirected.Graph.operations;
 
-import java.util.ArrayList;
 import java.util.Iterator;
-import java.util.List;
 import java.util.ListIterator;
-import java.util.Map;
 import java.util.Map.Entry;
-import java.util.TreeMap;
 
 import com.lalit.graph.elements.version2.Edge;
 import com.lalit.graph.elements.version2.Node;
+import com.lalit.graph.operations.GraphImpl;
 
 /**
  * @author lalit goyal
@@ -19,10 +16,7 @@ import com.lalit.graph.elements.version2.Node;
  * @return
  * 
  */
-public class GraphImpl implements GraphCRUDOperations, GraphIterator {
-
-	protected List<Edge> edgeList = new ArrayList<Edge>();
-	protected Map<String, Node> nodeMap = new TreeMap<String, Node>();
+public class UndirectedGraph extends GraphImpl implements UndirectedGraphCRUDOperations, UndirectedGraphIterator {
 
 	public Node insertNode(String nodeName) {
 		// Time Complexity O(log(n)) Search an element in TreeMap
@@ -128,6 +122,12 @@ public class GraphImpl implements GraphCRUDOperations, GraphIterator {
 	}
 
 	@Override
+	public Iterator<? extends Edge> incidentEdges(String nodeName) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
 	public Iterator<Entry<String, Node>> adjacentNodes(String nodeName) {
 		// TODO Auto-generated method stub
 		return null;
@@ -146,6 +146,12 @@ public class GraphImpl implements GraphCRUDOperations, GraphIterator {
 	}
 
 	@Override
+	public boolean insertUndirectedEdge(String nodeAName, String nodeBName, String edgeName) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
 	public int numNodes() {
 		// TODO Auto-generated method stub
 		return 0;
@@ -153,6 +159,12 @@ public class GraphImpl implements GraphCRUDOperations, GraphIterator {
 
 	@Override
 	public int numEdges() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public int degree(String nodeNameId) {
 		// TODO Auto-generated method stub
 		return 0;
 	}
@@ -171,6 +183,12 @@ public class GraphImpl implements GraphCRUDOperations, GraphIterator {
 
 	@Override
 	public String[] endVertices(String edge) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Iterator<? extends Edge> undirectedEdges() {
 		// TODO Auto-generated method stub
 		return null;
 	}

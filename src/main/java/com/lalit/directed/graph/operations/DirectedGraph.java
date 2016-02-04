@@ -7,7 +7,6 @@ import java.util.List;
 import java.util.ListIterator;
 import java.util.Map;
 import java.util.Map.Entry;
-import java.util.TreeMap;
 
 import com.lalit.graph.elements.version2.Edge;
 import com.lalit.graph.elements.version2.Node;
@@ -21,10 +20,7 @@ import com.lalit.graph.operations.GraphImpl;
  * @return
  * 
  */
-public class DirectedGraphImpl extends GraphImpl implements DirectedGraphCRUDOperations, DirectedGraphIterator {
-
-	private List<Edge> edgeList = new ArrayList<Edge>();
-	private Map<String, Node> nodeMap = new TreeMap<String, Node>();
+public class DirectedGraph extends GraphImpl implements DirectedGraphCRUDOperations, DirectedGraphIterator {
 
 	public Node insertNode(String nodeName) {
 		// Time Complexity O(log(n)) Search an element in TreeMap
@@ -370,9 +366,4 @@ public class DirectedGraphImpl extends GraphImpl implements DirectedGraphCRUDOpe
 		return false;
 	}
 
-	@Override
-	public Iterator<? extends Edge> undirectedEdges() {
-		// TODO Auto-generated method stub
-		return null;
-	}
 }
