@@ -39,12 +39,6 @@ public class GraphImpl implements GraphCRUDOperations, GraphIteratorOperations<N
 	}
 
 	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see com.lalit.graph.operations.GraphCRUDOperations#
-	 * insertUndirectedEdgeOperation(java.lang.String, java.lang.String,
-	 * java.lang.String)
-	 * 
 	 * Assumption : edgeName will be unique i.e. no two EdgeName can be same
 	 */
 	@Override
