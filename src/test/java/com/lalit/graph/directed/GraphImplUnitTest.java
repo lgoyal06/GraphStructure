@@ -13,11 +13,11 @@ public class GraphImplUnitTest {
 		graph.insertNode("A");
 		graph.insertNode("B");
 		graph.insertNode("E");
-		graph.insertDirectedEdge("B", "A", "Test");
-		graph.insertDirectedEdge("C", "A", "EdgeFromCToA");
-		graph.insertDirectedEdge("B", "C", "EdgeFromBToC");
-		graph.insertUndirectedEdge("B", "D", "UndirectedEdgeFromBToD");
-		graph.insertDirectedEdge("E", "D", "EdgeFromEToD");
+		graph.insertEdge("B", "A", "Test");
+		graph.insertEdge("C", "A", "EdgeFromCToA");
+		graph.insertEdge("B", "C", "EdgeFromBToC");
+		graph.insertEdge("B", "D", "UndirectedEdgeFromBToD");
+		graph.insertEdge("E", "D", "EdgeFromEToD");
 
 		System.out.println(graph);
 
@@ -34,13 +34,13 @@ public class GraphImplUnitTest {
 		graph.insertNode("A");
 		graph.insertNode("B");
 		graph.insertNode("E");
-		graph.insertDirectedEdge("B", "A", "EdgeFromBToA");
-		graph.insertDirectedEdge("C", "A", "EdgeFromCToA");
-		graph.insertDirectedEdge("B", "C", "EdgeFromBToC");
-		graph.insertUndirectedEdge("B", "D", "UndirectedEdgeFromBToD");
-		graph.insertDirectedEdge("E", "D", "EdgeFromEToD");
-		graph.insertDirectedEdge("F", "G", "EdgeFromFToG");
-		graph.insertUndirectedEdge("F", "A", "UndirectedEdgeFromFToA");
+		graph.insertEdge("B", "A", "EdgeFromBToA");
+		graph.insertEdge("C", "A", "EdgeFromCToA");
+		graph.insertEdge("B", "C", "EdgeFromBToC");
+		graph.insertEdge("B", "D", "UndirectedEdgeFromBToD");
+		graph.insertEdge("E", "D", "EdgeFromEToD");
+		graph.insertEdge("F", "G", "EdgeFromFToG");
+		graph.insertEdge("F", "A", "UndirectedEdgeFromFToA");
 
 		System.out.println(graph);
 

@@ -1,42 +1,27 @@
 package com.lalit.undirected.Graph.operations;
 
-import java.util.Iterator;
-
 import com.lalit.graph.elements.version2.Edge;
 import com.lalit.graph.operations.GraphImpl;
 
 /**
  * @author lalit goyal
- * @param fromNodeName
- * @param toNodeName
- * @param edgeName
- * @return
- * 
+ *
  */
-public class UndirectedGraph extends GraphImpl
-		implements UndirectedGraphCRUDOperations, UndirectedGraphIteratorOperation {
+public class UndirectedGraph extends GraphImpl implements UndirectedGraphCRUDOperations {
 
 	@Override
-	public Iterator<? extends Edge> incidentEdges(String nodeName) {
-		// TODO Auto-generated method stub
-		return null;
+	public boolean insertEdge(String nodeAName, String nodeBName, String edgeName) {
+		// Create an Edge Constant time operations
+		Edge edge = new Edge(edgeName);
+		edge.setFromNode(nodeAName);
+		edge.setToNode(nodeBName);
+		edge.setDirectedEdge(false);
+		edgeList.add(edge);
+		// Best Case - 2*O(log(n)) - Both nodes already exists
+		// Worst Case - 4*O(log(n)) - Both Nodes are new
+		insertNode(nodeAName);
+		insertNode(nodeBName);
+		return true;
 	}
 
-	@Override
-	public Iterator<? extends Edge> undirectedEdges() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public boolean insertUndirectedEdge(String nodeAName, String nodeBName, String edgeName) {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	@Override
-	public int degree(String nodeNameId) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
 }

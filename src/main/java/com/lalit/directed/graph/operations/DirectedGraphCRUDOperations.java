@@ -2,7 +2,7 @@ package com.lalit.directed.graph.operations;
 
 public interface DirectedGraphCRUDOperations {
 
-	boolean insertDirectedEdge(String fromNodeName, String toNodeName, String edgeName);
+	boolean insertEdge(String fromNodeName, String toNodeName, String edgeName);
 
 	boolean makeUndirected(String edgeName);
 

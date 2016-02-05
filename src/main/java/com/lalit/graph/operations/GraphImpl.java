@@ -1,6 +1,7 @@
 package com.lalit.graph.operations;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.ListIterator;
@@ -19,7 +20,7 @@ import com.lalit.graph.elements.version2.Node;
  * @return
  * 
  */
-public class GraphImpl implements GraphCRUDOperations, GraphIteratorOperations {
+public class GraphImpl implements GraphCRUDOperations, GraphIteratorOperations<Node, Edge> {
 
 	protected List<Edge> edgeList = new ArrayList<Edge>();
 	protected Map<String, Node> nodeMap = new TreeMap<String, Node>();
@@ -56,7 +57,7 @@ public class GraphImpl implements GraphCRUDOperations, GraphIteratorOperations {
 		ListIterator<Edge> listIterator = edgeList.listIterator();
 		while (listIterator.hasNext()) {
 			Edge e = listIterator.next();
-			if (e.getFromNode().equalsIgnoreCase(nodeToBeDeleted) || e.getToNode().equalsIgnoreCase(nodeToBeDeleted)) {
+			if (nodeToBeDeleted.equals(e.getFromNode()) || nodeToBeDeleted.equals(e.getToNode())) {
 				listIterator.remove();
 			}
 		}
@@ -90,7 +91,7 @@ public class GraphImpl implements GraphCRUDOperations, GraphIteratorOperations {
 		ListIterator<Edge> listIterator = edgeList.listIterator();
 		while (listIterator.hasNext()) {
 			Edge e = listIterator.next();
-			if (e.getEdgeInformation().equalsIgnoreCase(edgeName)) {
+			if (edgeName.equals(e.getEdgeInformation())) {
 				e.setEdgeInformation(edgeInformation);
 				return true;
 			}
@@ -99,80 +100,130 @@ public class GraphImpl implements GraphCRUDOperations, GraphIteratorOperations {
 	}
 
 	@Override
-	public boolean isDirected(String edgeName) {
-		// Worst Case - O(e) - e total number of the edges for all nodes
-		// Best Case - O(1)
-		// Average Case - O(e/2)
-		Iterator<Edge> iterator = edgeList.iterator();
-		while (iterator.hasNext()) {
-			Edge e = iterator.next();
-			if (e.getEdgeInformation().equalsIgnoreCase(edgeName)) {
-				return e.isDirectedEdge();
-			}
-		}
-		return false;
-	}
-
-	@Override
-	public boolean isUndirected(String edgeName) {
-		// Worst Case - O(e) - e total number of the edges for all nodes
-		// Best Case - O(1)
-		// Average Case - O(e/2)
-		Iterator<Edge> iterator = edgeList.iterator();
-		while (iterator.hasNext()) {
-			Edge e = iterator.next();
-			if (e.getEdgeInformation().equalsIgnoreCase(edgeName)) {
-				return e.isDirectedEdge();
-			}
-		}
-		return false;
-	}
-
-	@Override
 	public Iterator<Entry<String, Node>> adjacentNodes(String nodeName) {
-		// TODO Auto-generated method stub
-		return null;
+		Iterator<Edge> iterator = edgeList.iterator();
+		Map<String, Node> adjacentNodesMap = new HashMap<>();
+		// Worst Case - O(e) - e total number of the edges for all nodes
+		// Best Case - O(1)
+		// Average Case - O(e/2)
+		while (iterator.hasNext()) {
+			Edge e = iterator.next();
+			if (nodeName.equals(e.getToNode())) {
+				// Constant-time performance for the basic operations (get and
+				// put), assuming the hash function disperses the elements
+				// properly among the buckets.
+				adjacentNodesMap.put(e.getFromNode(), nodeMap.get(e.getFromNode()));
+			} else if (nodeName.equals(e.getFromNode())) {
+				// Constant-time performance for the basic operations (get and
+				// put), assuming the hash function disperses the elements
+				// properly among the buckets.
+				adjacentNodesMap.put(e.getToNode(), nodeMap.get(e.getToNode()));
+			}
+		}
+		return adjacentNodesMap.entrySet().iterator();
 	}
 
 	@Override
 	public Iterator<Entry<String, Node>> nodes() {
-		// TODO Auto-generated method stub
-		return null;
+		// TODO Find Expected Time complexity
+		return nodeMap.entrySet().iterator();
 	}
 
 	@Override
-	public Iterator<? extends Edge> edges() {
-		// TODO Auto-generated method stub
-		return null;
+	public Iterator<Edge> edges() {
+		// TODO Find Expected Time complexity
+		return edgeList.iterator();
 	}
 
 	@Override
 	public int numNodes() {
-		// TODO Auto-generated method stub
-		return 0;
+		// Constant time operations
+		return nodeMap.size();
 	}
 
 	@Override
 	public int numEdges() {
-		// TODO Auto-generated method stub
-		return 0;
+		// Constant time operations
+		return edgeList.size();
 	}
 
 	@Override
 	public boolean areAdjacent(String nodeA, String nodeB) {
-		// TODO Auto-generated method stub
+		// Worst Case - O(e) - e total number of the edges for all nodes
+		// Best Case - O(1)
+		// Average Case - O(e/2)
+		Iterator<Edge> iterator = edgeList.iterator();
+		while (iterator.hasNext()) {
+			Edge e = iterator.next();
+			if ((nodeA.equals(e.getFromNode()) && nodeB.equals(e.getToNode()))
+					|| nodeB.equals(e.getFromNode()) && nodeA.equals(e.getToNode())) {
+				return true;
+			}
+		}
 		return false;
 	}
 
 	@Override
 	public String opposite(String node, String edge) {
-		// TODO Auto-generated method stub
+		// Worst Case - O(e) - e total number of the edges for all nodes
+		// Best Case - O(1)
+		// Average Case - O(e/2)
+		Iterator<Edge> iterator = edgeList.iterator();
+		while (iterator.hasNext()) {
+			Edge e = iterator.next();
+			if (edge.equals(e.getEdgeInformation()) && (node.equals(e.getFromNode()))) {
+				return e.getToNode();
+			}
+		}
 		return null;
 	}
 
 	@Override
 	public String[] endVertices(String edge) {
-		// TODO Auto-generated method stub
+		// Worst Case - O(e) - e total number of the edges for all nodes
+		// Best Case - O(1)
+		// Average Case - O(e/2)
+		Iterator<Edge> iterator = edgeList.iterator();
+		while (iterator.hasNext()) {
+			Edge e = iterator.next();
+			if (edge.equals(e.getEdgeInformation())) {
+				return new String[] { e.getToNode(), e.getFromNode() };
+			}
+		}
 		return null;
 	}
+
+	@Override
+	public int degree(String nodeNameId) {
+		// Worst Case - O(e) - e total number of the edges for all nodes
+		// Best Case - O(1)
+		// Average Case - O(e/2)
+		int counter = 0;
+		Iterator<Edge> iterator = edgeList.iterator();
+		while (iterator.hasNext()) {
+			Edge e = iterator.next();
+			if (e.getToNode().equals(nodeNameId) || e.getFromNode().equals(nodeNameId)) {
+				++counter;
+			}
+		}
+		return counter;
+	}
+
+	@Override
+	public Iterator<Edge> incidentEdges(String nodeName) {
+		List<Edge> incidentEdges = new ArrayList<>();
+		Iterator<Edge> iterator = edgeList.iterator();
+		// Worst Case - O(e) - e total number of the edges for all nodes
+		// Best Case - O(1)
+		// Average Case - O(e/2)
+		while (iterator.hasNext()) {
+			Edge e = iterator.next();
+			if (nodeName.equals(e.getFromNode()) || nodeName.equals(e.getToNode())) {
+				// Constant time to add element to array at end :: O(1)
+				incidentEdges.add(e);
+			}
+		}
+		return incidentEdges.iterator();
+	}
+
 }

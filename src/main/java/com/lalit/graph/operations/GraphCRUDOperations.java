@@ -24,10 +24,6 @@ public interface GraphCRUDOperations {
 
 	boolean updateEdgeInformation(String edgeName, String edgeInformation);
 
-	boolean isDirected(String edgeName);
-
-	boolean isUndirected(String edgeName);
-
 	int numNodes();
 
 	int numEdges();
@@ -37,5 +33,7 @@ public interface GraphCRUDOperations {
 	String opposite(String node, String edge);
 
 	String[] endVertices(String edge);
+
+	int degree(String nodeNameId);
 
 }
