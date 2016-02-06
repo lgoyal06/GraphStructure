@@ -22,12 +22,10 @@ public interface HybridGraphCRUDOperations {
 
 	public boolean isUndirected(String edgeName);
 
-	public int numDirectedNodes();
-
-	public int numUndirectedNodes();
-
 	public int numDirectedEdges();
 
 	public int numUndirectedEdges();
+
+	boolean makeUndirected(String edgeName);
 
 }

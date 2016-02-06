@@ -39,23 +39,6 @@ public class DirectedGraph extends GraphImpl
 	}
 
 	@Override
-	public boolean makeUndirected(String edgeName) {
-		// Worst Case - O(e) - e total number of the edges for all nodes
-		// Best Case - O(1)
-		// Average Case - O(e/2)
-		ListIterator<Edge> listIterator = edgeList.listIterator();
-		while (listIterator.hasNext()) {
-			Edge e = listIterator.next();
-			if (edgeName.equals(e.getEdgeInformation())) {
-				e.setDirectedEdge(false);
-				return true;
-			}
-		}
-		return false;
-
-	}
-
-	@Override
 	public boolean reverseDirection(String edgeName) {
 		// Worst Case - O(e) - e total number of the edges for all nodes
 		// Best Case - O(1)

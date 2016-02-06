@@ -4,8 +4,6 @@ public interface DirectedGraphCRUDOperations {
 
 	boolean insertEdge(String fromNodeName, String toNodeName, String edgeName);
 
-	boolean makeUndirected(String edgeName);
-
 	boolean reverseDirection(String edgeName);
 
 	boolean setDirectionFrom(String edgeName, String newFromNodeName);

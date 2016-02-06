@@ -17,7 +17,6 @@ import com.lalit.undirected.Graph.operations.UndirectedGraphCRUDOperations;
 /**
  * @author lalit goyal
  * 
- *         TODO Think of avoiding the code redundancy
  */
 public class HybridGraph extends GraphImpl
 		implements DirectedGraphCRUDOperations, DirectedGraphIteratorOperation<Node, Edge>,
@@ -57,7 +56,6 @@ public class HybridGraph extends GraphImpl
 			}
 		}
 		return false;
-
 	}
 
 	@Override
@@ -288,44 +286,61 @@ public class HybridGraph extends GraphImpl
 
 	@Override
 	public boolean insertDirectedEdge(String fromNodeName, String toNodeName, String edgeName) {
-		// TODO Auto-generated method stub
-		return false;
+		return insertEdge(fromNodeName, toNodeName, edgeName, true);
 	}
 
 	@Override
 	public boolean insertUndirectedEdge(String fromNodeName, String toNodeName, String edgeName) {
-		// TODO Auto-generated method stub
-		return false;
+		return insertEdge(fromNodeName, toNodeName, edgeName, false);
 	}
 
-	@Override
-	public int numDirectedNodes() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
-	public int numUndirectedNodes() {
-		// TODO Auto-generated method stub
-		return 0;
+	private boolean insertEdge(String fromNodeName, String toNodeName, String edgeName, boolean isDirected) {
+		// Create an Edge Constant time operations
+		Edge edge = new Edge(edgeName);
+		edge.setFromNode(fromNodeName);
+		edge.setToNode(toNodeName);
+		edge.setDirectedEdge(isDirected);
+		edgeList.add(edge);
+		// Best Case - 2*O(log(n)) - Both nodes already exists
+		// Worst Case - 4*O(log(n)) - Both Nodes are new
+		insertNode(fromNodeName);
+		insertNode(toNodeName);
+		return true;
 	}
 
 	@Override
 	public int numDirectedEdges() {
-		// TODO Auto-generated method stub
-		return 0;
+		// Worst Case - O(e) - e total number of the edges for all nodes
+		// Best Case - O(1)
+		// Average Case - O(e/2)
+		int size = 0;
+		ListIterator<Edge> listIterator = edgeList.listIterator();
+		while (listIterator.hasNext()) {
+			if (listIterator.next().isDirectedEdge()) {
+				++size;
+			}
+		}
+		return size;
 	}
 
 	@Override
 	public int numUndirectedEdges() {
-		// TODO Auto-generated method stub
-		return 0;
+		// Worst Case - O(e) - e total number of the edges for all nodes
+		// Best Case - O(1)
+		// Average Case - O(e/2)
+		int size = 0;
+		ListIterator<Edge> listIterator = edgeList.listIterator();
+		while (listIterator.hasNext()) {
+			if (!listIterator.next().isDirectedEdge()) {
+				++size;
+			}
+		}
+		return size;
 	}
 
 	@Override
 	public boolean insertEdge(String fromNodeName, String toNodeName, String edgeName) {
-		// TODO Auto-generated method stub
-		return false;
+		return insertEdge(fromNodeName, toNodeName, edgeName, false);
 	}
 
 }
