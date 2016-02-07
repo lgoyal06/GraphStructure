@@ -14,17 +14,17 @@ package com.lalit.graph.operations;
  */
 public interface HybridGraphCRUDOperations {
 
-	public boolean insertDirectedEdge(String fromNodeName, String toNodeName, String edgeName);
+	boolean insertDirectedEdge(String fromNodeName, String toNodeName, String edgeName);
 
-	public boolean insertUndirectedEdge(String fromNodeName, String toNodeName, String edgeName);
+	boolean insertUndirectedEdge(String fromNodeName, String toNodeName, String edgeName);
 
-	public boolean isDirected(String edgeName);
+	boolean isDirectedEdge(String edgeName);
 
-	public boolean isUndirected(String edgeName);
+	boolean isUndirectedEdge(String edgeName);
 
-	public int numDirectedEdges();
+	int numDirectedEdges();
 
-	public int numUndirectedEdges();
+	int numUndirectedEdges();
 
 	boolean makeUndirected(String edgeName);
 

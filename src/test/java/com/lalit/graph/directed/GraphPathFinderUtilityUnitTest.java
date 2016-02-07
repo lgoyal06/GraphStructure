@@ -20,7 +20,7 @@ public class GraphPathFinderUtilityUnitTest {
 	public void positiveTestToFindAllPossiblePathBetweenTwoNodes() {
 		GraphToMapStructureBuilder mapBuilder = new DirectedGraphToMapStructureBuilderImpl();
 		Map<String, Node> map = mapBuilder.buildMapStructure(
-				"C:\\Users\\lalit goyal\\git\\GraphStructureAlgorithms\\src\\test\\resources\\SampleInputFile2");
+				"C:\\Users\\lalit goyal\\git\\GraphStructure\\src\\test\\resources\\SampleInputFile2");
 		int expectedNumberOfPathsBetweenTwoNodes = 11;
 		Map<String, Integer> listOfPathsBetweenTwoNodes = new GraphPathFinderAlgorithm()
 				.findAllPossiblePathsBetweenTwoNodes(map, "S", "T");
@@ -31,7 +31,7 @@ public class GraphPathFinderUtilityUnitTest {
 	public void positiveTest1ToFindShortestPathBetweenTwoNodesWhenMultiplePathsExists() {
 		GraphToMapStructureBuilder mapBuilder = new DirectedGraphToMapStructureBuilderImpl();
 		Map<String, Node> map = mapBuilder.buildMapStructure(
-				"C:\\Users\\lalit goyal\\git\\GraphStructureAlgorithms\\src\\test\\resources\\SampleInputFile2");
+				"C:\\Users\\lalit goyal\\git\\GraphStructure\\src\\test\\resources\\SampleInputFile2");
 		String expectedPath = "[S,D,T]";
 		int expectedDistance = 10;
 		Map<String, Integer> listOfPathsBetweenTwoNodes = new GraphPathFinderAlgorithm()
@@ -47,7 +47,7 @@ public class GraphPathFinderUtilityUnitTest {
 	public void positiveTest2ToFindShortestPathBetweenTwoNodesWhenOnePathExists() {
 		GraphToMapStructureBuilder mapBuilder = new DirectedGraphToMapStructureBuilderImpl();
 		Map<String, Node> map = mapBuilder.buildMapStructure(
-				"C:\\Users\\lalit goyal\\git\\GraphStructureAlgorithms\\src\\test\\resources\\SampleInputFile2");
+				"C:\\Users\\lalit goyal\\git\\GraphStructure\\src\\test\\resources\\SampleInputFile2");
 		String expectedPath = "[S,A]";
 		int expectedDistance = 4;
 		Map<String, Integer> listOfPathsBetweenTwoNodes = new GraphPathFinderAlgorithm()
@@ -63,7 +63,7 @@ public class GraphPathFinderUtilityUnitTest {
 	public void positiveTest3ToFindShortestPathBetweenTwoNodesWhenNoPathExists() {
 		GraphToMapStructureBuilder mapBuilder = new DirectedGraphToMapStructureBuilderImpl();
 		Map<String, Node> map = mapBuilder.buildMapStructure(
-				"C:\\Users\\lalit goyal\\git\\GraphStructureAlgorithms\\src\\test\\resources\\SampleInputFile2");
+				"C:\\Users\\lalit goyal\\git\\GraphStructure\\src\\test\\resources\\SampleInputFile2");
 		String expectedPath = "";
 		int expectedDistance = -1;
 		Map<String, Integer> listOfPathsBetweenTwoNodes = new GraphPathFinderAlgorithm()
@@ -79,7 +79,7 @@ public class GraphPathFinderUtilityUnitTest {
 	public void positiveTest1ToFindAllPossiblePathBetweenTwoNodes() {
 		GraphToMapStructureBuilder mapBuilder = new DirectedGraphToMapStructureBuilderImpl();
 		Map<String, Node> map = mapBuilder.buildMapStructure(
-				"C:\\Users\\lalit goyal\\git\\GraphStructureAlgorithms\\src\\test\\resources\\SampleInputFile3");
+				"C:\\Users\\lalit goyal\\git\\GraphStructure\\src\\test\\resources\\SampleInputFile3");
 		int expectedNumberOfPathsBetweenTwoNodes = 5;
 		String[] paths = new String[] { "[A,B,D,K]", "[A,B,E,K]", "[A,B,D,E,K]", "[A,B,E,F,K]", "[A,B,D,E,F,K]" };
 		int[] pathDistance = new int[] { 14, 15, 16, 19, 20 };
@@ -98,7 +98,7 @@ public class GraphPathFinderUtilityUnitTest {
 	public void positiveTestDijkstrasAlgoToFindShortestPathBetweenTwoNodes() {
 		GraphToMapStructureBuilder mapBuilder = new DirectedGraphToMapStructureBuilderImpl();
 		Map<String, Node> map = mapBuilder.buildMapStructure(
-				"C:\\Users\\lalit goyal\\git\\GraphStructureAlgorithms\\src\\test\\resources\\SampleInputFile2");
+				"C:\\Users\\lalit goyal\\git\\GraphStructure\\src\\test\\resources\\SampleInputFile2");
 		String expectedShortestPath = "S,A,C,E,G,T";
 		String expectedShortestPathWeight = "11";
 		String[] shortestPathAndWeight = new DijkstraAlgorithmImplementation().findShortestPathBetweenTwoNodes(map, "S",

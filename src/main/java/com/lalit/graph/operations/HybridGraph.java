@@ -23,12 +23,12 @@ public class HybridGraph extends GraphImpl
 		UndirectedGraphCRUDOperations, HybridGraphCRUDOperations, HybridGraphIteratorOperations<Edge> {
 
 	@Override
-	public boolean isDirected(String edgeName) {
-		return !isUndirected(edgeName);
+	public boolean isDirectedEdge(String edgeName) {
+		return !isUndirectedEdge(edgeName);
 	}
 
 	@Override
-	public boolean isUndirected(String edgeName) {
+	public boolean isUndirectedEdge(String edgeName) {
 		// Worst Case - O(e) - e total number of the edges for all nodes
 		// Best Case - O(1)
 		// Average Case - O(e/2)
