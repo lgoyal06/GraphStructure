@@ -3,7 +3,7 @@ package com.lalit.graph.operations;
 /**
  * @author lalit goyal
  * 
- *         This interface contains generic methods which can be used by
+ *         This interface contains common graph methods which can be used by
  * 
  *         1.Directed
  * 
@@ -13,6 +13,8 @@ package com.lalit.graph.operations;
  *
  */
 public interface GraphCRUDOperations {
+
+	boolean insertEdge(String fromNodeName, String toNodeName, String edgeName);
 
 	Object insertNode(String nodeName);
 
@@ -35,5 +37,7 @@ public interface GraphCRUDOperations {
 	String[] endVertices(String edge);
 
 	int degree(String nodeNameId);
+
+	boolean isNodeExists(String node);
 
 }

@@ -20,7 +20,7 @@ import com.lalit.graph.elements.version2.Node;
  * @return
  * 
  */
-public class GraphImpl implements GraphCRUDOperations, GraphIteratorOperations<Node, Edge> {
+public abstract class GraphImpl implements GraphCRUDOperations, GraphIteratorOperations<Node, Edge> {
 
 	protected List<Edge> edgeList = new ArrayList<Edge>();
 	protected Map<String, Node> nodeMap = new TreeMap<String, Node>();
@@ -218,6 +218,10 @@ public class GraphImpl implements GraphCRUDOperations, GraphIteratorOperations<N
 			}
 		}
 		return incidentEdges.iterator();
+	}
+
+	public boolean isNodeExists(String node) {
+		return nodeMap.get(node) == null ? false : true;
 	}
 
 }
